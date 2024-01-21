@@ -1,20 +1,23 @@
 <div class="container">
+  <form [formGroup]="form">
   <div class="container p-0 d-flex align-items-center">
     <img src="https://img.freepik.com/premium-vector/furniture-logo-template-design_567288-463.jpg?w=1380" />
     <div class="input-group mb-3 m-3">
-      <input type="text" class="form-control" placeholder="" aria-label="Recipient's username"
-        aria-describedby="basic-addon2">
-      <div class="input-group-append">
-        <button class="btn btn-success rounded-0 rounded-end" type="button">Button</button>
-      </div>
+        <input formControlName="searchText" type="text" class="form-control shadow-none" placeholder="" aria-label="Recipient's username"
+          aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button  (click)="searchElement()" class="btn btn-success rounded-0 rounded-end"
+            type="button">Button</button>
+        </div>
     </div>
-
   </div>
-
+</form>
 
   <nav class="navbar navbar-expand-lg navbar-light  p-3 mb-5">
-    <a (mouseout)="changeActiveElement()" (mouseover)="changeClass(contact)" #home id="home" class="navbar-brand nav-link" href="home">Home</a>
-    <a (mouseout)="changeActiveElement()" (mouseover)="changeClass(home)"  #contact id="contact" class="navbar-brand nav-link" href="contact">Contact</a>
+    <a (mouseout)="changeActiveElement()" (mouseover)="changeClass(contact)" #home id="home"
+      class="navbar-brand nav-link" href="home">Home</a>
+    <a (mouseout)="changeActiveElement()" (mouseover)="changeClass(home)" #contact id="contact"
+      class="navbar-brand nav-link" href="contact">Contact</a>
   </nav>
 </div>
 <div class="container">
