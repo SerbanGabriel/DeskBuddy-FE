@@ -1,0 +1,31 @@
+.nav-link{
+    position: relative;
+}
+
+.nav-link::after{
+    content: '';
+    height: 2px;
+    width: 100%;
+    background-color: greenyellow;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: all 0.2s;
+    opacity: 0;
+}
+
+.nav-link:hover::after{
+   opacity: 1;
+}
+
+.active{
+    color: green;
+}
+
+.active::after{
+    opacity: 1;
+}
+
+img{
+    width: 20%;
+}
