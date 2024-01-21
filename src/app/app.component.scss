@@ -5,24 +5,42 @@
 .nav-link::after{
     content: '';
     height: 2px;
+    width: 0px;
+    background-color: greenyellow;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+}
+
+.nav-link:hover{
+    color:#663202
+}
+
+.nav-link:hover::after{
+   opacity: 1;
+   width: 100%;
+   left: 0;
+}
+
+.active{
+    color: #fe9a00;
+}
+
+.active:hover{
+    color: #fe9a00;
+}
+
+.active::after{
+    content: '';
+    height: 2px;
     width: 100%;
     background-color: greenyellow;
     position: absolute;
     bottom: 0;
     left: 0;
-    transition: all 0.2s;
-    opacity: 0;
-}
-
-.nav-link:hover::after{
-   opacity: 1;
-}
-
-.active{
-    color: green;
-}
-
-.active::after{
+    transition: all 0.2s ease-in-out;
     opacity: 1;
 }
 
@@ -35,5 +53,4 @@ button {
 
 button:hover{
     background-color: #fe9901
-
 }
