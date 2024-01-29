@@ -1,0 +1,13 @@
+input[type=radio] {
+    width: 2em; height: 2em;
+}
+
+input[type=radio]:hover{
+box-shadow: 3px solid black;
+}
+.contact{
+    min-height: 50vh;
+}
+.formInput{
+    width: 17vw;
+}

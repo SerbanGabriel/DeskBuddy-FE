@@ -54,3 +54,17 @@ button {
 button:hover{
     background-color: #fe9901
 }
+
+.about{
+    font-family: ui-sans-serif;
+}
+
+hr{
+    height: 10px;
+    border: 0;
+    box-shadow: 0 10px 10px -10px #333 inset;
+}
+a{
+    color:black;
+    cursor: pointer;
+}

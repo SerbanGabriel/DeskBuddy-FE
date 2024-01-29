@@ -10,33 +10,38 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   activeLink = "";
   title = 'deskbuddy';
   form = this.fb.group({
-    searchText:''
+    searchText: ''
   })
 
   constructor(@Inject(DOCUMENT) private document: Document,
-              private fb:FormBuilder){
+    private fb: FormBuilder) {
 
   }
 
   ngOnInit(): void {
-     this.changeActiveElement()
+    this.changeActiveElement()
   }
 
-  changeActiveElement(){
-    console.log(this.document.location.pathname.replace('/',''))
-    const activeElement = this.document.getElementById(this.document.location.pathname.replace('/',''))
+  changeActiveElement() {
+    if (this.document.location.pathname === '/') {
+      const activeElement = this.document.getElementById('home')
+      activeElement?.classList.add("active")
+      return;
+    }
+
+    const activeElement = this.document.getElementById(this.document.location.pathname.replace('/', ''))
     activeElement?.classList.add("active")
   }
 
-  changeClass(event: any){
-   event.classList.remove("active")
+  changeClass(event: any) {
+    event.classList.remove("active")
   }
 
-  searchElement(){
+  searchElement() {
     console.log(this.form.value)
   }
 } 

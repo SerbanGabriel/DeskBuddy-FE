@@ -8,3 +8,11 @@
     display: flex;
     overflow: auto
   }
+
+  img{
+    height: -webkit-fill-available;
+  }
+  .item{
+    height: 15em;
+    width: 15em;
+  }
