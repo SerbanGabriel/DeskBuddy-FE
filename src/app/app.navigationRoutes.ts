@@ -4,5 +4,5 @@ import { ContactsComponent } from "./Components/contacts/contacts.component";
 
 export const navRoutes: Route[] = [
     {path:'', component: HomeComponent},
-    { path: 'contact', component: ContactsComponent }
+    { path: 'contact', component: ContactsComponent },
 ]

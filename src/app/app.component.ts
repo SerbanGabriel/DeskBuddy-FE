@@ -2,11 +2,12 @@ import { CommonModule, DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
+import { LoginFormComponent } from './Components/login-form/login-form.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, ReactiveFormsModule],
+  imports: [RouterOutlet, CommonModule, ReactiveFormsModule,LoginFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -38,10 +39,21 @@ export class AppComponent implements OnInit {
   }
 
   changeClass(event: any) {
-    event.classList.remove("active")
+    event.forEach((x:any) => x.classList.remove("active"))
   }
 
   searchElement() {
     console.log(this.form.value)
   }
+
+  showDropdown(accountForm:any,accountImg:any){
+    accountForm.classList.add('show')
+    accountImg.classList.add('onForm')
+  }
+
+  hideDropdown(accountForm:any,accountImg:any){
+    accountForm.classList.remove('show')
+    accountImg.classList.remove('onForm')
+  }
+  
 } 

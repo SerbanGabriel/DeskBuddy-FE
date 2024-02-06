@@ -68,3 +68,18 @@ a{
     color:black;
     cursor: pointer;
 }
+.btn-group:hover>.dropdown-menu { display: block; margin-top: 0; }
+
+.dropdown-menu{
+    min-width: 16em;
+}
+
+.account{
+    transform: translate(-50%, 0);
+}
+i:hover{
+    color:#fe9a00
+}
+.onForm{
+    color:#fe9a00
+}
