@@ -20,9 +20,9 @@
         class="navbar-brand nav-link" href="contact">Contact</a>
     </div>
 
-    <div class="dropdown-center">
-      <i #accountImg (mouseover)="showDropdown(accountForm,accountImg)"
-        (mouseout)="hideDropdown(accountForm,accountImg)" (mouseover)="changeClass([home,contact])" type="button"
+    <div class="dropdown-center accountNav" (mouseover)="showDropdown(accountForm,accountImg)"
+    (mouseout)="hideDropdown(accountForm,accountImg)" (mouseover)="changeClass([home,contact])">
+      <i #accountImg  type="button"
         id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown"
         class="bi bi-person-circle"></i>
       <div class="dropdown-menu account" (mouseout)="hideDropdown(accountForm,accountImg)"

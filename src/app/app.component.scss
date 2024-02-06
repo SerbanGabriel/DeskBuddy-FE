@@ -73,10 +73,16 @@ a{
 .dropdown-menu{
     min-width: 16em;
 }
+.accountNav{
+    width: 2em;
+    display: flex;
+    justify-content: center;
+}
 
 .account{
-    transform: translate(-50%, 0);
+   margin-top: 25px;
 }
+
 i:hover{
     color:#fe9a00
 }

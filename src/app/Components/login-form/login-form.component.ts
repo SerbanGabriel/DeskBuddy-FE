@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
@@ -12,15 +12,17 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss'
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
+  ngOnInit(): void {
+    
+  }
   loginForm = new FormGroup({
-    email: new FormControl(''),
+    email: new FormControl('',Validators.email),
     password: new FormControl(''),
   });
 
   onSubmit(): void {
-    // Process checkout data here
-    alert("da")
+   console.log(this.loginForm.value)
   }
   
 }

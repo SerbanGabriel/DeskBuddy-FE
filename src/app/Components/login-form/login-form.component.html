@@ -1,7 +1,11 @@
-    <form [formGroup]="loginForm" class="px-4 py-3">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="px-4 py-3">
       <div class="mb-3">
         <label for="exampleDropdownFormEmail1" class="form-label">Email address</label>
         <input formControlName="email" type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+        <span class="text-danger"
+                                *ngIf="(loginForm.get('email')?.touched) && loginForm.get('email')?.errors && loginForm.get('email')?.dirty">
+                                Invalid email
+                            </span>
       </div>
       <div class="mb-3">
         <label for="exampleDropdownFormPassword1" class="form-label">Password</label>
