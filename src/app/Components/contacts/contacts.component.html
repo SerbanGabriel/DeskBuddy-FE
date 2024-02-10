@@ -1,11 +1,11 @@
 <div class="contact">
     <mat-stepper orientation="vertical" [linear]="true" #stepper>
         <mat-step [stepControl]="firstFormGroup">
-            <form class="mt-3" [formGroup]="firstFormGroup">
+            <form class="mt-3" (ngSubmit)="onSubmit(button)" [formGroup]="firstFormGroup">
                 <ng-template matStepLabel>Fill out your name</ng-template>
                 <mat-form-field class="formInput">
-                    <mat-label>Name</mat-label>
-                    <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                    <mat-label>Full name</mat-label>
+                    <input matInput placeholder="Full name" formControlName="fullName" required>
                 </mat-form-field>
                 <div>
                     <button mat-button matStepperNext>Next</button>
@@ -16,32 +16,36 @@
             <form class="d-flex mt-3 flex-column" [formGroup]="secondFormGroup">
                 <ng-template matStepLabel>Fill out your address</ng-template>
                 <mat-form-field class="formInput">
-                    <mat-label>Address</mat-label>
-                    <input  matInput formControlName="name" placeholder="Ex. 1 Main St, New York, NY" required>
+                    <mat-label>Full adress</mat-label>
+                    <input  matInput formControlName="fullAdress" placeholder="Ex. 1 Main St, New York, NY" required>
                 </mat-form-field>
                 <mat-form-field class="formInput">
-                    <mat-label>Address</mat-label>
-                   <input matInput formControlName="lastName" placeholder="Ex. 1 Main St, New York, NY" required>
+                    <mat-label>Postal code</mat-label>
+                   <input matInput formControlName="postalCode" placeholder="Ex. 1 Main St, New York, NY" required>
                 </mat-form-field>
                 <mat-form-field class="formInput">
-                    <mat-label>Address</mat-label>
+                    <mat-label>phone number</mat-label>
                     <input matInput formControlName="phoneNumber" placeholder="Ex. 1 Main St, New York, NY" required>
                 </mat-form-field>
                 <mat-form-field class="formInput">
-                    <mat-label>Address</mat-label>
+                    <mat-label>email</mat-label>
                     <input matInput formControlName="email" placeholder="Ex. 1 Main St, New York, NY" required>
                 </mat-form-field>
+                <mat-form-field>
+                    <mat-label #steper>Describe the issue</mat-label>
+                    <textarea  formControlName="issue" matInput></textarea>
+                  </mat-form-field>
                 <div>
                     <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
+                    <button mat-button (click)="onSubmit(steper)" matStepperNext>Next</button>
                 </div>
             </form>
         </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
-            <p>You are now done.</p>
+        <mat-step [completed]="completed" >
+            <ng-template matStepLabel>Submited</ng-template>
+            <p>Thank you for completing, one of our customer support will be in touch with you shortly.</p>
             <div>
-                <button mat-button matStepperPrevious>Back</button>
+                <button #button mat-button matStepperPrevious>Back</button>
                 <button mat-button (click)="stepper.reset()">Reset</button>
             </div>
         </mat-step>
