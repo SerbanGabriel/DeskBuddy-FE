@@ -3,11 +3,12 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { LoginFormComponent } from './Components/login-form/login-form.component';
+import {MatDividerModule} from '@angular/material/divider';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, ReactiveFormsModule,LoginFormComponent],
+  imports: [RouterOutlet,MatDividerModule, CommonModule, ReactiveFormsModule,LoginFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

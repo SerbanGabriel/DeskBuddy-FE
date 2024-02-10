@@ -51,6 +51,23 @@ import {
   ɵɵinject
 } from "./chunk-VKXPULYJ.js";
 
+// node_modules/@angular/cdk/fesm2022/coercion.mjs
+function coerceBooleanProperty(value) {
+  return value != null && `${value}` !== "false";
+}
+function coerceNumberProperty(value, fallbackValue = 0) {
+  return _isNumberValue(value) ? Number(value) : fallbackValue;
+}
+function _isNumberValue(value) {
+  return !isNaN(parseFloat(value)) && !isNaN(Number(value));
+}
+function coerceArray(value) {
+  return Array.isArray(value) ? value : [value];
+}
+function coerceElement(elementOrRef) {
+  return elementOrRef instanceof ElementRef ? elementOrRef.nativeElement : elementOrRef;
+}
+
 // node_modules/@angular/cdk/fesm2022/platform.mjs
 var hasV8BreakIterator;
 try {
@@ -245,23 +262,6 @@ function hasModifierKey(event, ...modifiers) {
     return modifiers.some((modifier) => event[modifier]);
   }
   return event.altKey || event.shiftKey || event.ctrlKey || event.metaKey;
-}
-
-// node_modules/@angular/cdk/fesm2022/coercion.mjs
-function coerceBooleanProperty(value) {
-  return value != null && `${value}` !== "false";
-}
-function coerceNumberProperty(value, fallbackValue = 0) {
-  return _isNumberValue(value) ? Number(value) : fallbackValue;
-}
-function _isNumberValue(value) {
-  return !isNaN(parseFloat(value)) && !isNaN(Number(value));
-}
-function coerceArray(value) {
-  return Array.isArray(value) ? value : [value];
-}
-function coerceElement(elementOrRef) {
-  return elementOrRef instanceof ElementRef ? elementOrRef.nativeElement : elementOrRef;
 }
 
 // node_modules/@angular/cdk/fesm2022/observers.mjs
@@ -2930,6 +2930,9 @@ var BidiModule = _BidiModule;
 })();
 
 export {
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  coerceElement,
   Platform,
   getSupportedInputTypes,
   normalizePassiveListenerOptions,
@@ -2939,9 +2942,6 @@ export {
   ENTER,
   SPACE,
   hasModifierKey,
-  coerceBooleanProperty,
-  coerceNumberProperty,
-  coerceElement,
   ObserversModule,
   FocusKeyManager,
   isFakeMousedownFromScreenReader,
@@ -2951,4 +2951,4 @@ export {
   Directionality,
   BidiModule
 };
-//# sourceMappingURL=chunk-NQTICAXS.js.map
+//# sourceMappingURL=chunk-Z2W54PJH.js.map

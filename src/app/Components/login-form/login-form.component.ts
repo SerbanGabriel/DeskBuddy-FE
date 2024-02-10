@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDividerModule} from '@angular/material/divider';
 
 @Component({
   selector: 'app-login-form',
@@ -11,6 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
     FormsModule,
     CommonModule,
     MatButtonModule,
+    MatDividerModule,
     MatCardModule,
     ReactiveFormsModule],
   templateUrl: './login-form.component.html',
