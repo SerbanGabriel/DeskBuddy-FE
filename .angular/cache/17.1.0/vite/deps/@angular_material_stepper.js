@@ -9,6 +9,10 @@ import {
   STEPPER_GLOBAL_OPTIONS
 } from "./chunk-X27MZBJH.js";
 import {
+  DomSanitizer,
+  HttpClient
+} from "./chunk-IEY5BBK3.js";
+import {
   ErrorStateMatcher,
   MatCommonModule,
   MatRipple,
@@ -29,10 +33,6 @@ import {
   transition,
   trigger
 } from "./chunk-QMXBSBYU.js";
-import {
-  DomSanitizer,
-  HttpClient
-} from "./chunk-IEY5BBK3.js";
 import {
   CommonModule,
   DOCUMENT,
