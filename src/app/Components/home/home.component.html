@@ -1,67 +1,36 @@
-<app-news ></app-news>
+<app-news></app-news>
 
 <h3 class="my-4" style="font-family: serif">Best Deals!</h3>
-<div class="dealsContainer d-flex justify-content-between">
-    <div class="card border-success mb-3 dealsElement" style="max-width: 20em;">
-       <img src="https://assets.wfcdn.com/im/17438532/scale-h308-w448%5Ecompr-r85/2681/268152561/default_name.jpg"/>
-    </div>
-    <div class="card border-success mb-3 dealsElement" style="max-width: 20em;">
-        <img src="https://assets.wfcdn.com/im/32792995/scale-h308-w448%5Ecompr-r85/2681/268152573/default_name.jpg"/>
-     </div>
-     <div class="card border-success mb-3 dealsElement" style="max-width: 20em;">
-        <img src="https://assets.wfcdn.com/im/21442082/scale-h308-w448%5Ecompr-r85/2681/268152574/default_name.jpg"/>
-     </div>
-     <div class="card border-success mb-3 dealsElement" style="max-width: 20em;">
-        <img src="https://assets.wfcdn.com/im/94893148/scale-h308-w448%5Ecompr-r85/2681/268152558/default_name.jpg"/>
-     </div>
+<div class=" wrappedContainer">
+    <mat-card class="example-card">
+        <img src="https://assets.wfcdn.com/im/17438532/scale-h308-w448%5Ecompr-r85/2681/268152561/default_name.jpg" />
+    </mat-card>
+    <mat-card class="example-card">
+        <img src="https://assets.wfcdn.com/im/32792995/scale-h308-w448%5Ecompr-r85/2681/268152573/default_name.jpg" />
+    </mat-card>
+    <mat-card class="example-card">
+        <img src="https://assets.wfcdn.com/im/21442082/scale-h308-w448%5Ecompr-r85/2681/268152574/default_name.jpg" />
+    </mat-card>
+    <mat-card class="example-card">
+        <img src="https://assets.wfcdn.com/im/94893148/scale-h308-w448%5Ecompr-r85/2681/268152558/default_name.jpg" />
+    </mat-card>
+
 </div>
 
-<div class="mt-4">
-    <div class="d-flex flex-wrap justify-content-between">
-        <div class="card border-success mb-3 item">
-            <div class="card-body text-success">
-                <h5 class="card-title">Success card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
+<div class="mt-4 wrappedContainer">
+    <div *ngFor="let item of items">
+        <div class="card">
+            <img priority (mouseover)="item.showImage = item.image1" (mouseout)="item.showImage = item.image2"
+                class="card-img-top p-5 itemImage" src="{{item.showImage ?? item.image1}}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{item.title}}</h5>
+                <p class="card-text">{{item.description}}</p>
+                <div class="d-flex justify-content-between">
+                    <a class="btn btn-primary">Add to cart <i class="bi bi-cart ms-3"></i></a>
+                    <a>{{item.price}}$</a>
+                </div>
+
             </div>
-            <div class="card-footer bg-transparent border-success">Footer</div>
-        </div>
-        <div class="card border-success mb-3 item">
-            <div class="card-body text-success">
-                <h5 class="card-title">Success card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-            </div>
-            <div class="card-footer bg-transparent border-success">Footer</div>
-        </div>
-        <div class="card border-success mb-3 item">
-            <div class="card-body text-success">
-                <h5 class="card-title">Success card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-            </div>
-            <div class="card-footer bg-transparent border-success">Footer</div>
-        </div>
-        <div class="card border-success mb-3 item">
-            <div class="card-body text-success">
-                <h5 class="card-title">Success card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-            </div>
-            <div class="card-footer bg-transparent border-success">Footer</div>
-        </div>
-        <div class="card border-success mb-3 item" >
-            <div class="card-body text-success">
-                <h5 class="card-title">Success card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-            </div>
-            <div class="card-footer bg-transparent border-success">Footer</div>
         </div>
     </div>
 </div>
