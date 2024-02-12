@@ -21,17 +21,25 @@
       <a (mouseout)="changeActiveElement()" (mouseover)="changeClass([home])" #contact id="contact"
         class="navbar-brand nav-link" href="contact">Contact</a>
     </div>
+    <div class="d-flex ">
+      <div class="accountNav " (mouseover)="showDropdown(accountForm,accountImg)"
+        (mouseout)="hideDropdown(accountForm,accountImg)" (mouseover)="changeClass([home,contact])">
+        <a (mouseout)="changeActiveElement()" (mouseover)="changeClass([contact])" #home id="home"
+          class="navbar-brand nav-link" href=""> <i #accountImg type="button" id="dropdownMenuButton"
+            aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="bi bi-person-circle"></i>
 
-    <div class="dropdown-center accountNav" (mouseover)="showDropdown(accountForm,accountImg)"
-    (mouseout)="hideDropdown(accountForm,accountImg)" (mouseover)="changeClass([home,contact])">
-      <i #accountImg  type="button"
-        id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown"
-        class="bi bi-person-circle"></i>
-      <div class="dropdown-menu account" (mouseout)="hideDropdown(accountForm,accountImg)"
-        (mouseover)="showDropdown(accountForm,accountImg)" #accountForm aria-labelledby="dropdownMenuButton">
-        <app-login-form></app-login-form>
+
+          <div class="dropdown-menu account" (mouseout)="hideDropdown(accountForm,accountImg)"
+            (mouseover)="showDropdown(accountForm,accountImg)" #accountForm aria-labelledby="dropdownMenuButton">
+            <app-login-form></app-login-form>
+          </div>
+        </a>
       </div>
+      <a (mouseout)="changeActiveElement()" (mouseover)="changeClass([contact])" #home id="home"
+        class="navbar-brand nav-link" href=""> <i class="bi bi-cart ms-3"></i></a>
     </div>
+
+
 
 
   </nav>

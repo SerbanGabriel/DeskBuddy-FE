@@ -81,7 +81,7 @@ a{
 }
 
 .account{
-   margin-top: 25px;
+   margin-top: -0.1em;
 }
 
 i:hover{
@@ -90,3 +90,7 @@ i:hover{
 .onForm{
     color:#fe9a00
 }
+
+.dropdown-menu {
+    transform: translate(-50%, 0);
+  }
