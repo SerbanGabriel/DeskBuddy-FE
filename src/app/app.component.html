@@ -25,7 +25,7 @@
       <div class="accountNav " (mouseover)="showDropdown(accountForm,accountImg)"
         (mouseout)="hideDropdown(accountForm,accountImg)" (mouseover)="changeClass([home,contact])">
         <a (mouseout)="changeActiveElement()" (mouseover)="changeClass([contact])" #home id="home"
-          class="navbar-brand nav-link" href=""> <i #accountImg type="button" id="dropdownMenuButton"
+          class="navbar-brand nav-link" > <i #accountImg type="button" id="dropdownMenuButton"
             aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="bi bi-person-circle"></i>
 
 
@@ -36,12 +36,8 @@
         </a>
       </div>
       <a (mouseout)="changeActiveElement()" (mouseover)="changeClass([contact])" #home id="home"
-        class="navbar-brand nav-link" href=""> <i class="bi bi-cart ms-3"></i></a>
+        class="navbar-brand nav-link" href=""> <i class="bi bi-cart"></i></a>
     </div>
-
-
-
-
   </nav>
 </div>
 <div class="container">
