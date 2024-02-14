@@ -58,8 +58,8 @@
 
 <div *ngIf="storage.getUserSettings()?.email" class="card ">
   <mat-card class="example-card">
-    <mat-card-header class="d-flex align-items-center mb-2">
-      <div  mat-card-avatar class="example-header-image m-0 "></div>
+    <mat-card-header class="d-flex flex-row-reverse align-items-center mb-2">
+      <img  class="circular" [src]="storage.getUserSettings().image" />
       <mat-card-title>Welcome {{storage.getUserSettings().firstName}}</mat-card-title>
     </mat-card-header>
     <mat-divider></mat-divider>
@@ -73,6 +73,7 @@
           <i class="bi bi-file-text"></i>
           My Data
         </button>
+
       </div>
     </mat-card-actions>
     <mat-card-footer>
@@ -81,5 +82,4 @@
 
 
   </mat-card>
-
 </div>

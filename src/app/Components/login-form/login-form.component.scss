@@ -1,16 +1,22 @@
 .example-card {
-    max-width: 400px;
-  }
-  
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
+  max-width: 400px;
+}
 
-  .logoutBtn{
-    background-color: #663202f4;
-  }
+.circular {
+  position: relative;
+  width: 5em;
+  height: 5em;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 10px;
+}
 
-  .signInbtn{
-     background-color: #fe9800f0;
-  }
+.logoutBtn {
+  background-color: #663202f4;
+}
+
+.signInbtn {
+  background-color: #fe9800f0;
+}
+

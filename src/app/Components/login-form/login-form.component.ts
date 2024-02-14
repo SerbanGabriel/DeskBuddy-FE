@@ -8,6 +8,8 @@ import { HttpClient, HttpClientModule, HttpHandler, HttpHeaders } from '@angular
 import AppSettings from '../AppSettings';
 import { LocalStorage } from '../localStorage/local-storage.service';
 import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ImageService, SingleFileUploadComponent } from '../single-file-upload/single-file-upload.component';
 
 @Injectable()
 @Component({
@@ -21,7 +23,7 @@ import { Router } from '@angular/router';
     MatCardModule,
     HttpClientModule,
     ReactiveFormsModule],
-  providers: [LocalStorage],
+  providers: [LocalStorage,SingleFileUploadComponent,ImageService],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss'
 })
@@ -29,7 +31,7 @@ export class LoginFormComponent implements OnInit {
   showRegister: boolean = false;
   passwordDoNotMatchError = false;
 
-  constructor(private router: Router,  public storage:LocalStorage, private http: HttpClient, private localStorage: LocalStorage) {
+  constructor(private file: SingleFileUploadComponent ,private sanitizer: DomSanitizer, private router: Router,  public storage:LocalStorage, private http: HttpClient, private localStorage: LocalStorage) {
 
   }
 
@@ -56,7 +58,9 @@ export class LoginFormComponent implements OnInit {
       this.http.post(AppSettings.API_ENDPOINT + "/login", this.loginForm.value)
         .subscribe((data:any) => {
           if (data) {
-            data.email = data.email.split("@")[0]
+            let objectURL = 'data:image/png;base64,' + data.image;
+            data.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+            data.image = data.image.changingThisBreaksApplicationSecurity
             this.localStorage.setSettings(data)
           }
         })
@@ -73,7 +77,6 @@ export class LoginFormComponent implements OnInit {
       return
     }
     delete this.registerForm.value.confirmPassword
-    console.log(this.registerForm.value)
     this.http.post(AppSettings.API_ENDPOINT + "/register", this.registerForm.value)
       .subscribe()
     // this.isUserLoggedIn = true
