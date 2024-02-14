@@ -29,13 +29,20 @@ export class AppComponent implements OnInit {
   }
 
   changeActiveElement() {
-    if (this.document.location.pathname === '/') {
+    const activeRoute = this.document.location.pathname.replace('/', '')
+
+    if(activeRoute === ''){
       const activeElement = this.document.getElementById('home')
+      activeElement?.classList.add("active")
+      return
+    }
+    if (this.document.location.pathname === '/') {
+      const activeElement = this.document.getElementById(activeRoute)
       activeElement?.classList.add("active")
       return;
     }
 
-    const activeElement = this.document.getElementById(this.document.location.pathname.replace('/', ''))
+    const activeElement = this.document.getElementById(activeRoute)
     activeElement?.classList.add("active")
   }
 

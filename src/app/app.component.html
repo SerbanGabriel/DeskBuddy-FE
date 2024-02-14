@@ -16,17 +16,19 @@
 
   <nav class="navbar navbar-expand-lg navbar-light py-3 mb-2 d-flex justify-content-between">
     <div class="d-flex">
-      <a (mouseout)="changeActiveElement()" (mouseover)="changeClass([contact])" #home id="home"
+      <a (mouseout)="changeActiveElement()" (mouseover)="changeClass([contact,admin])" #home id="home"
         class="navbar-brand nav-link" href="">Home</a>
-      <a (mouseout)="changeActiveElement()" (mouseover)="changeClass([home])" #contact id="contact"
+      <a (mouseout)="changeActiveElement()" (mouseover)="changeClass([home,admin])" #contact id="contact"
         class="navbar-brand nav-link" href="contact">Contact</a>
+        <a (mouseout)="changeActiveElement()" (mouseover)="changeClass([home,contact])" #admin id="admin"
+        class="navbar-brand nav-link" href="admin">Admin</a>
     </div>
     <div class="d-flex ">
       <div class="accountNav " (mouseover)="showDropdown(accountForm,accountImg)"
         (mouseout)="hideDropdown(accountForm,accountImg)" (mouseover)="changeClass([home,contact])">
         <a (mouseout)="changeActiveElement()" (mouseover)="changeClass([contact])" #home id="home"
-          class="navbar-brand nav-link" > <i #accountImg type="button" id="dropdownMenuButton"
-            aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="bi bi-person-circle"></i>
+          class="navbar-brand nav-link"> <i #accountImg type="button" id="dropdownMenuButton" aria-haspopup="true"
+            aria-expanded="false" data-bs-toggle="dropdown" class="bi bi-person-circle"></i>
 
 
           <div class="dropdown-menu account" (mouseout)="hideDropdown(accountForm,accountImg)"
