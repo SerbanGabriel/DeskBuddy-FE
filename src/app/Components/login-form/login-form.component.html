@@ -14,8 +14,8 @@
       placeholder="Password">
   </div>
   <div class="d-flex justify-content-between">
-    <button type="submit" class="btn btn-primary">Sign in</button>
-    <button (click)="showRegisterForm()" class="btn btn-secondary">Register</button>
+    <button type="submit" class="signInbtn btn btn-primary">Sign in</button>
+    <button (click)="showRegisterForm()" class="logoutBtn btn btn-secondary">Register</button>
   </div>
 </form>
 
@@ -51,14 +51,14 @@
   </div>
 
   <div class="d-flex justify-content-between">
-    <button (click)="register()" class="btn btn-primary">Register</button>
-    <button (click)="showRegisterForm()" class="btn btn-secondary">Back</button>
+    <button (click)="register()" class="signInbtn btn btn-primary">Register</button>
+    <button (click)="showRegisterForm()" class="logoutBtn btn btn-secondary">Back</button>
   </div>
 </form>
 
-<div *ngIf="storage.getUserSettings()?.email" class="card -">
+<div *ngIf="storage.getUserSettings()?.email" class="card ">
   <mat-card class="example-card">
-    <mat-card-header class="d-flex align-items-center m-2">
+    <mat-card-header class="d-flex align-items-center mb-2">
       <div  mat-card-avatar class="example-header-image m-0 "></div>
       <mat-card-title>Welcome {{storage.getUserSettings().firstName}}</mat-card-title>
     </mat-card-header>
@@ -69,14 +69,14 @@
           <i class="bi bi-cart-fill"></i>
           Shoping cart
         </button>
-        <button class="d-flex justify-content-start" mat-button>
+        <button class=" d-flex justify-content-start" mat-button>
           <i class="bi bi-file-text"></i>
           My Data
         </button>
       </div>
     </mat-card-actions>
     <mat-card-footer>
-      <button (click)="logOut()" class=" m-3 btn btn-secondary">Logout</button>
+      <button (click)="logOut()" class="logoutBtn m-3 btn btn-secondary">Logout</button>
     </mat-card-footer>
 
 
