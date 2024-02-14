@@ -31,7 +31,7 @@ export class LoginFormComponent implements OnInit {
   showRegister: boolean = false;
   passwordDoNotMatchError = false;
 
-  constructor(private file: SingleFileUploadComponent ,private sanitizer: DomSanitizer, private router: Router,  public storage:LocalStorage, private http: HttpClient, private localStorage: LocalStorage) {
+  constructor(private sanitizer: DomSanitizer, private router: Router,  public storage:LocalStorage, private http: HttpClient, private localStorage: LocalStorage) {
 
   }
 
