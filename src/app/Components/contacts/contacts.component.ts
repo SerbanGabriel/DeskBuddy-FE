@@ -5,6 +5,8 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
 import {FormBuilder, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { LocalStorage } from '../localStorage/local-storage.service';
+import { LoginFormComponent } from '../login-form/login-form.component';
 @Component({
   selector: 'app-contacts',
   standalone: true,
@@ -14,10 +16,11 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule,],
+    MatInputModule],
   templateUrl: './contacts.component.html',
   styleUrl: './contacts.component.scss',
-  providers:[{
+  providers:[
+    LocalStorage,LoginFormComponent,{
     provide: STEPPER_GLOBAL_OPTIONS,
     useValue: { showError: true }
   }]
@@ -35,17 +38,15 @@ export class ContactsComponent implements OnInit{
   });
   completed: boolean = false;
   
-  constructor(private _formBuilder: FormBuilder){
+  constructor(private login: LoginFormComponent  ,private _formBuilder: FormBuilder, private localStorage: LocalStorage){
 
   }
 
   ngOnInit(): void {
-    console.log("ContactsComponent")
   }
 
   onSubmit(steper:any){
     if(steper.innerHTML){
-      console.log(this.firstFormGroup.value)
       console.log(this.secondFormGroup.value)
     }
   }

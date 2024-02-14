@@ -1,4 +1,4 @@
-<form *ngIf="!showRegister && !isUserLoggedIn" [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="px-4 py-3">
+<form *ngIf="!showRegister && !storage.getUserSettings()?.email" [formGroup]="loginForm" (ngSubmit)="login()" class="px-4 py-3">
   <div class="mb-3">
     <label for="exampleDropdownFormEmail1" class="form-label">Email address</label>
     <input formControlName="email" type="email" class="form-control" id="exampleDropdownFormEmail1"
@@ -19,7 +19,7 @@
   </div>
 </form>
 
-<form *ngIf="showRegister && !isUserLoggedIn" [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="px-4 py-3">
+<form *ngIf="showRegister && !storage.getUserSettings()?.email" [formGroup]="registerForm" (ngSubmit)="login()" class="px-4 py-3">
   <div class="mb-3">
     <label for="exampleDropdownFormEmail1" class="form-label">Email address</label>
     <input formControlName="email" type="email" class="form-control" id="exampleDropdownFormEmail1"
@@ -56,11 +56,11 @@
   </div>
 </form>
 
-<div *ngIf="isUserLoggedIn" class="card -">
+<div *ngIf="storage.getUserSettings()?.email" class="card -">
   <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{loginForm.value.email}}</mat-card-title>
+    <mat-card-header class="d-flex align-items-center m-2">
+      <div  mat-card-avatar class="example-header-image m-0 "></div>
+      <mat-card-title>Welcome {{storage.getUserSettings().firstName}}</mat-card-title>
     </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-actions>
@@ -75,6 +75,11 @@
         </button>
       </div>
     </mat-card-actions>
+    <mat-card-footer>
+      <button (click)="logOut()" class=" m-3 btn btn-secondary">Logout</button>
+    </mat-card-footer>
+
+
   </mat-card>
 
 </div>
