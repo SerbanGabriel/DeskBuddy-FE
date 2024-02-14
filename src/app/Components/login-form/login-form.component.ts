@@ -7,7 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { HttpClient, HttpClientModule, HttpHandler, HttpHeaders } from '@angular/common/http';
 import AppSettings from '../AppSettings';
 import { LocalStorage } from '../localStorage/local-storage.service';
-import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 @Component({
@@ -29,7 +29,7 @@ export class LoginFormComponent implements OnInit {
   showRegister: boolean = false;
   passwordDoNotMatchError = false;
 
-  constructor(  public storage:LocalStorage, private http: HttpClient, private localStorage: LocalStorage) {
+  constructor(private router: Router,  public storage:LocalStorage, private http: HttpClient, private localStorage: LocalStorage) {
 
   }
 
@@ -82,5 +82,9 @@ export class LoginFormComponent implements OnInit {
 
   logOut(){
     this.storage.cleanAll()
+  }
+
+  goToMyDataPage(){
+    this.router.navigate(["/myData"]);
   }
 }
