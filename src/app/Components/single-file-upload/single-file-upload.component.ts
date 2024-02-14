@@ -35,7 +35,7 @@ export class ImageService {
   selector: 'app-single-file-upload',
   standalone: true,
   providers:[ImageService],
-  imports: [RouterOutlet,MatIconModule,MatProgressSpinnerModule, MatButtonModule,MatDividerModule, CommonModule, ReactiveFormsModule],
+  imports: [RouterOutlet,MatInputModule,MatIconModule,MatProgressSpinnerModule, MatButtonModule,MatDividerModule, CommonModule, ReactiveFormsModule],
   templateUrl: './single-file-upload.component.html',
   styleUrl: './single-file-upload.component.scss'
 })

@@ -1,7 +1,7 @@
 <div class="d-flex align-items-center gap-3">
-    <div>
+    <div> 
         <button type="button" mat-raised-button (click)="imageInput.click()">
-            <span *ngIf="!loading"> Choose File</span>
+            <span *ngIf="!loading"> Change Profile image </span>
             <mat-spinner *ngIf="loading" class="spinner"></mat-spinner>
         </button>
         <input accept=".png" hidden (change)="processFile(imageInput)" #imageInput type="file" id="file">
