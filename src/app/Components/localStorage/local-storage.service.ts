@@ -1,18 +1,28 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class LocalStorage {
+export class LocalService {
   private storageName: string = "Settings";
 
   constructor() { }
 
   setSettings(data: any) {
-    localStorage.setItem(this.storageName, JSON.stringify(data));
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(this.storageName, JSON.stringify(data));
+    } else if (typeof sessionStorage !== 'undefined') {
+      sessionStorage.setItem('key', 'value');
+    } else {
+      console.log('Web Storage is not supported in this environment.');
+    }
+   
   }
 
   getUserSettings() {
-    let data:any = localStorage.getItem(this.storageName);
-    return JSON.parse(data);
+    if (typeof localStorage !== 'undefined') {
+      let data:any = localStorage.getItem(this.storageName);
+      return JSON.parse(data);
+    } 
+
   }
 
   clearUserSettings() {

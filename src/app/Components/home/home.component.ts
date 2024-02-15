@@ -3,17 +3,13 @@ import { NewsComponent } from './news/news.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import AppSettings  from '../AppSettings';
 import { CommonModule } from '@angular/common';
-import { NgOptimizedImage } from '@angular/common'
 import {MatCardModule} from '@angular/material/card';
-interface item{
-  name:string,
-  description:string
-}
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NewsComponent,MatCardModule,NgOptimizedImage,HttpClientModule,CommonModule],
+  imports: [NewsComponent,MatCardModule,HttpClientModule,CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

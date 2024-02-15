@@ -5,7 +5,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
 import {FormBuilder, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { LocalStorage } from '../localStorage/local-storage.service';
+import { LocalService } from '../localStorage/local-storage.service';
 import { LoginFormComponent } from '../login-form/login-form.component';
 @Component({
   selector: 'app-contacts',
@@ -20,7 +20,8 @@ import { LoginFormComponent } from '../login-form/login-form.component';
   templateUrl: './contacts.component.html',
   styleUrl: './contacts.component.scss',
   providers:[
-    LocalStorage,LoginFormComponent,{
+    LocalService,
+    LoginFormComponent,{
     provide: STEPPER_GLOBAL_OPTIONS,
     useValue: { showError: true }
   }]
@@ -38,7 +39,7 @@ export class ContactsComponent implements OnInit{
   });
   completed: boolean = false;
   
-  constructor(private login: LoginFormComponent  ,private _formBuilder: FormBuilder, private localStorage: LocalStorage){
+  constructor(private _formBuilder: FormBuilder, private localStorage: LocalService){
 
   }
 

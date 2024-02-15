@@ -11,7 +11,7 @@ import { LoginFormComponent } from '../login-form/login-form.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import Appsettings from '../AppSettings';
-import { LocalStorage } from '../localStorage/local-storage.service';
+import { LocalService } from '../localStorage/local-storage.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
 class ImageSnippet {
@@ -43,7 +43,7 @@ export class SingleFileUploadComponent {
  
   selectedFile: any;
   loading = false;
-  constructor(private sanitizer: DomSanitizer,private store:LocalStorage, private imageService: ImageService){}
+  constructor(private sanitizer: DomSanitizer,private store:LocalService, private imageService: ImageService){}
 
   private onSuccess() {
     this.selectedFile.pending = false;

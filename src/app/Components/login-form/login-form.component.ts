@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { HttpClient, HttpClientModule, HttpHandler, HttpHeaders } from '@angular/common/http';
 import AppSettings from '../AppSettings';
-import { LocalStorage } from '../localStorage/local-storage.service';
+import { LocalService } from '../localStorage/local-storage.service';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageService, SingleFileUploadComponent } from '../single-file-upload/single-file-upload.component';
@@ -23,7 +23,7 @@ import { ImageService, SingleFileUploadComponent } from '../single-file-upload/s
     MatCardModule,
     HttpClientModule,
     ReactiveFormsModule],
-  providers: [LocalStorage,SingleFileUploadComponent,ImageService],
+  providers: [LocalService,SingleFileUploadComponent,ImageService],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss'
 })
@@ -31,7 +31,7 @@ export class LoginFormComponent implements OnInit {
   showRegister: boolean = false;
   passwordDoNotMatchError = false;
 
-  constructor(private sanitizer: DomSanitizer, private router: Router,  public storage:LocalStorage, private http: HttpClient, private localStorage: LocalStorage) {
+  constructor(private sanitizer: DomSanitizer, private router: Router,  public storage:LocalService, private http: HttpClient) {
 
   }
 
@@ -61,7 +61,7 @@ export class LoginFormComponent implements OnInit {
             let objectURL = 'data:image/png;base64,' + data.image;
             data.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
             data.image = data.image.changingThisBreaksApplicationSecurity
-            this.localStorage.setSettings(data)
+            this.storage.setSettings(data)
           }
         })
     }

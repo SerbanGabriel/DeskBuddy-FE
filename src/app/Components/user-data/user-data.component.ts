@@ -3,13 +3,13 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
-import { LocalStorage } from '../localStorage/local-storage.service';
+import { LocalService } from '../localStorage/local-storage.service';
 import { SingleFileUploadComponent } from '../single-file-upload/single-file-upload.component';
 
 @Component({
     selector: 'app-user-data',
     standalone: true,
-    providers: [LocalStorage,SingleFileUploadComponent],
+    providers: [SingleFileUploadComponent, LocalService],
     templateUrl: './user-data.component.html',
     styleUrl: './user-data.component.scss',
     imports: [MatInputModule, MatIconModule, ReactiveFormsModule, FormsModule, MatButtonModule, SingleFileUploadComponent]
@@ -23,7 +23,7 @@ export class UserDataComponent implements OnInit {
     confirmPassword:''
   })
 
-  constructor(private fb:FormBuilder, private store: LocalStorage){
+  constructor(private fb:FormBuilder, private store: LocalService){
 
   }
 
