@@ -19,7 +19,7 @@ export class NotificationService {
     setTimeout(() => {
     this.class.next('alertBannerOut')
      console.log("after 2 secs: ", alert);
-    }, 5000);
+    }, 2000);
   }
 
   success(message:string) {
@@ -31,6 +31,6 @@ export class NotificationService {
     setTimeout(() => {
     this.class.next('alertBannerOut')
      console.log("after 2 secs: ", alert);
-    }, 5000);
+    }, 2000);
   }
 }

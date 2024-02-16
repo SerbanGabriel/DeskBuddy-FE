@@ -9,6 +9,7 @@ import { NewsComponent } from '../home/news/news.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
+import { NotificationService } from '../notification-service/notification.service';
 
 @Component({
   selector: 'app-cart',
@@ -21,7 +22,7 @@ import {MatInputModule} from '@angular/material/input';
 export class CartComponent implements OnInit {
   items:any;
 
-  constructor(private sanitizer: DomSanitizer,private http:HttpClient, private store:LocalService){
+  constructor(private notificationService:NotificationService, private sanitizer: DomSanitizer,private http:HttpClient, private store:LocalService){
 
   }
 
@@ -34,8 +35,11 @@ export class CartComponent implements OnInit {
       res.items.forEach((x:any) => {
         x.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'+ x.image1)
       })
-      console.log(res.items)
+      
       this.items = res.items
+      if(this.items.length == 0){
+        this.notificationService.error("No Items in cart")
+      }
     })
   }
 
