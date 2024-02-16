@@ -8,10 +8,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { NgOptimizedImage } from '@angular/common'
 import { MatButtonModule } from '@angular/material/button';
 import Appsettings from '../AppSettings';
+import { LocalService } from '../localStorage/local-storage.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
+  providers:[LocalService],
   imports: [NewsComponent,MatCardModule,MatButtonModule,NgOptimizedImage,HttpClientModule,CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -19,7 +21,7 @@ import Appsettings from '../AppSettings';
 export class HomeComponent implements OnInit{
   public items:any;
 
-  constructor( private sanitizer: DomSanitizer,private http: HttpClient){
+  constructor( public store:LocalService, private sanitizer: DomSanitizer,private http: HttpClient){
 
   }
 

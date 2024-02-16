@@ -35,11 +35,10 @@
                         <a>{{item.price}}$</a>
                     </div>
 
-                    <button class="imgBtn mt-2" type="button" mat-raised-button (click)="delete(item)">
+                    <button *ngIf="store.getUserSettings()?.isAdmin" class="imgBtn mt-2" type="button" mat-raised-button (click)="delete(item)">
                         <span> Delete </span>
                     </button>
                 </div>
-
             </div>
         </div>
     </div>

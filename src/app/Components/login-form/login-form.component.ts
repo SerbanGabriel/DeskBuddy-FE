@@ -56,7 +56,13 @@ export class LoginFormComponent implements OnInit {
     if (this.loginForm.valid) {
       this.http.post(AppSettings.API_ENDPOINT + "/login", this.loginForm.value)
         .subscribe((data:any) => {
-          if (data) {
+          console.log(data.password !== this.loginForm.value.password)
+
+
+          if(data.password !== this.loginForm.value.password){
+            return;
+          }
+          if (data ) {
             let objectURL = 'data:image/png;base64,' + data.image;
             data.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
             data.image = data.image.changingThisBreaksApplicationSecurity
