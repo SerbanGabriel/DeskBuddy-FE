@@ -78,8 +78,6 @@ export class LoginFormComponent implements OnInit {
     delete this.registerForm.value.confirmPassword
     this.http.post(AppSettings.API_ENDPOINT + "/register", this.registerForm.value)
       .subscribe()
-    // this.isUserLoggedIn = true
-    // this.passwordDoNotMatchError = false;
   }
 
   logOut(){
