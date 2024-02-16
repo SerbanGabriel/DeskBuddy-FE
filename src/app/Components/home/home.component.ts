@@ -43,6 +43,12 @@ export class HomeComponent implements OnInit{
       this.http.delete(Appsettings.API_ENDPOINT + "/deleteItem/" + item.id).subscribe(() => {
         this.getItems()
       })
+  }
 
+  addToCart(item:any){
+    console.log(item)
+    this.http.post(Appsettings.API_ENDPOINT + "/addToCart/" + item.id + "/" + this.store.getUserSettings().id,{}).subscribe(() => {
+      this.getItems()
+    })
   }
 }
