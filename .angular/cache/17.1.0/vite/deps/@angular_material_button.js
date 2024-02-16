@@ -2,12 +2,12 @@ import {
   MatCommonModule,
   MatRippleLoader,
   MatRippleModule
-} from "./chunk-TF3JKRQH.js";
+} from "./chunk-XA7AUHWZ.js";
 import {
   FocusMonitor,
   Platform
-} from "./chunk-6MDA6ELY.js";
-import "./chunk-6ZCYDPB2.js";
+} from "./chunk-7EMXNJMA.js";
+import "./chunk-ISOSFC42.js";
 import {
   ANIMATION_MODULE_TYPE,
   ChangeDetectionStrategy,
@@ -43,12 +43,11 @@ import {
   ɵɵinvalidFactory,
   ɵɵprojection,
   ɵɵprojectionDef
-} from "./chunk-LWXQP72X.js";
-import "./chunk-WSA2QMXP.js";
+} from "./chunk-W3EUJSHM.js";
 import {
   __spreadProps,
   __spreadValues
-} from "./chunk-X6JV76XL.js";
+} from "./chunk-SXIXOCJ4.js";
 
 // node_modules/@angular/material/fesm2022/button.mjs
 var _c0 = ["mat-button", ""];

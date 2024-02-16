@@ -1,89 +1,95 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, Input } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterOutlet } from '@angular/router';
-import { Observable, throwError } from 'rxjs';
-import { LoginFormComponent } from '../login-form/login-form.component';
-import {MatButtonModule} from '@angular/material/button';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatButtonModule } from '@angular/material/button';
 import Appsettings from '../AppSettings';
 import { LocalService } from '../localStorage/local-storage.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { BehaviorSubject, elementAt, finalize } from 'rxjs';
 
 class ImageSnippet {
-  constructor(public src: string, public file: File) {}
+  constructor(public src: string, public file: File) { }
 }
+
 @Injectable()
-export class ImageService {
-
-  constructor(private http: HttpClient) {}
-
-
-  public uploadImage(image: File): Observable<Response> {
-    const formData = new FormData();
-
-    formData.append('image', image);
-
-    return this.http.post<any>(Appsettings.API_ENDPOINT + "/upload" , formData );
-  }
-}
 @Component({
   selector: 'app-single-file-upload',
   standalone: true,
-  providers:[ImageService],
-  imports: [RouterOutlet,MatInputModule,MatIconModule,MatProgressSpinnerModule, MatButtonModule,MatDividerModule, CommonModule, ReactiveFormsModule],
+
+  imports: [RouterOutlet, MatInputModule, MatIconModule, MatButtonModule, MatDividerModule, CommonModule, ReactiveFormsModule],
   templateUrl: './single-file-upload.component.html',
   styleUrl: './single-file-upload.component.scss'
 })
 export class SingleFileUploadComponent {
- 
   selectedFile: any;
-  loading = false;
-  constructor(private sanitizer: DomSanitizer,private store:LocalService, private imageService: ImageService){}
+  formData: any = new FormData();
+  image: any
+  reimage: any
 
-  private onSuccess() {
-    this.selectedFile.pending = false;
-    this.selectedFile.status = 'ok';
-  }
-
-  private onError() {
-    this.selectedFile.pending = false;
-    this.selectedFile.status = 'fail';
-    this.selectedFile.src = '';
-  }
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer, private store: LocalService) { }
 
   processFile(imageInput: any) {
     const file: File = imageInput.files[0];
     const reader = new FileReader();
-
     reader.addEventListener('load', (event: any) => {
-
       this.selectedFile = new ImageSnippet(event.target.result, file);
-
+      const formData = new FormData();
+      formData.append('image', this.selectedFile.file);
       this.selectedFile.pending = true;
-      this.loading = true;
-      this.imageService.uploadImage(this.selectedFile.file).subscribe(
-        (res:any) => {
+      return this.http.post<any>(Appsettings.API_ENDPOINT + "/upload", formData).pipe(finalize(() => this.selectedFile.pending = false)).subscribe({
+        next: (res: any) => {
           let user = this.store.getUserSettings();
           let objectURL = 'data:image/png;base64,' + res.photo;
           user.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
           user.image = user.image.changingThisBreaksApplicationSecurity
           this.store.setSettings(user)
-          this.onSuccess();
-          this.loading = false;
-
+          this.selectedFile.status = 'ok';
         },
-        (err:any) => {
-          console.log(err)
-          this.loading = false;
-          this.onError();
-        })
+        error: () => {
+          this.selectedFile.status = 'fail';
+          this.selectedFile.src = '';
+        }
+      })
     });
 
     reader.readAsDataURL(file);
   }
+
+  processFileForItemPreview(imageInput: any, itemForm: any) {
+    const file: File = imageInput.files[0];
+
+    const reader = new FileReader();
+    reader.addEventListener('load', (event: any) => {
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+
+      if (this.formData.get('firstImage')) {
+        this.formData.set('firstImage', this.selectedFile.file)
+      }else{
+        this.formData.append('firstImage', this.selectedFile.file);
+      }
+
+      const jsonStr = JSON.stringify(itemForm);
+      this.formData.append('user', jsonStr);
+      return this.http.post<any>(Appsettings.API_ENDPOINT + "/preview", this.formData).pipe(finalize(() => this.selectedFile.pending = false)).subscribe({
+        next: (res: any) => {
+          let img: any = 'data:image/png;base64,' + res.photo;
+          img = this.sanitizer.bypassSecurityTrustUrl(img);
+          img = img.changingThisBreaksApplicationSecurity
+          this.image = img
+        },
+      })
+    });
+
+    reader.readAsDataURL(file);
+  }
+
+  save() {
+    return this.http.post<any>(Appsettings.API_ENDPOINT + "/save", this.formData).pipe(finalize(() => this.selectedFile.pending = false)).subscribe()
+  }
+
 }

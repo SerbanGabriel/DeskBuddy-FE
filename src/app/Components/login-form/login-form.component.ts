@@ -9,7 +9,7 @@ import AppSettings from '../AppSettings';
 import { LocalService } from '../localStorage/local-storage.service';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ImageService, SingleFileUploadComponent } from '../single-file-upload/single-file-upload.component';
+import {  SingleFileUploadComponent } from '../single-file-upload/single-file-upload.component';
 
 @Injectable()
 @Component({
@@ -23,7 +23,7 @@ import { ImageService, SingleFileUploadComponent } from '../single-file-upload/s
     MatCardModule,
     HttpClientModule,
     ReactiveFormsModule],
-  providers: [LocalService,SingleFileUploadComponent,ImageService],
+  providers: [LocalService,SingleFileUploadComponent],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss'
 })
