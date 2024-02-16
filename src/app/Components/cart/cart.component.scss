@@ -1,0 +1,40 @@
+.example-card>img {
+    height: 14em;
+    object-fit: fill;
+    border-radius: inherit;
+}
+
+.example-card {
+    border-radius: 1em;
+}
+
+.card {
+    width: 19.5em;
+}
+
+.delete {
+    margin-top: -16px;
+    margin-right: -16px;
+}
+
+.deleteBtn{
+    background-color: #663202;
+
+}
+
+.wrappedContainer {
+    display: grid;
+    grid-gap: 2em;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+}
+
+.cart {
+    width: 2em;
+    height: 2em;
+    background-color: #fe9a00;
+}
+
+.scaleDown {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}

@@ -41,10 +41,9 @@ export class SingleFileUploadComponent {
       const formData = new FormData();
       formData.append('image', this.selectedFile.file);
       this.selectedFile.pending = true;
-      formData.append('email',this.store.getUserSettings().email);
       
 
-      return this.http.post<any>(Appsettings.API_ENDPOINT + "/upload", formData).pipe(finalize(() => this.selectedFile.pending = false)).subscribe({
+      return this.http.post<any>(Appsettings.API_ENDPOINT + "/upload/"+ this.store.getUserSettings().id, formData).pipe(finalize(() => this.selectedFile.pending = false)).subscribe({
         next: (res: any) => {
           console.log(res)
           let user = this.store.getUserSettings();

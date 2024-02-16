@@ -15,21 +15,21 @@
 
 
 .card-title {
-  max-height: 2.5em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+    max-height: 2.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .card-text{
-  max-height: 4.3em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+    max-height: 4.3em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
   .card >img{
     height: 17em;
@@ -41,3 +41,14 @@
     grid-gap: 1em;
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   }
+
+  .alertBanner {
+    width: 20%;
+    position: absolute;
+    margin-top: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}

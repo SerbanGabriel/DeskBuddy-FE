@@ -9,7 +9,12 @@ import AppSettings from '../AppSettings';
 import { LocalService } from '../localStorage/local-storage.service';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import {  SingleFileUploadComponent } from '../single-file-upload/single-file-upload.component';
+import { SingleFileUploadComponent } from '../single-file-upload/single-file-upload.component';
+import { MatIcon } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { NotificationService } from '../notification-service/notification.service';
 
 @Injectable()
 @Component({
@@ -18,12 +23,14 @@ import {  SingleFileUploadComponent } from '../single-file-upload/single-file-up
   imports: [
     FormsModule,
     CommonModule,
-    MatButtonModule,
-    MatDividerModule,
+    MatButtonModule, MatSnackBarModule,
+    MatDividerModule, MatFormFieldModule,
     MatCardModule,
+    MatIcon, MatSelectModule,
     HttpClientModule,
+
     ReactiveFormsModule],
-  providers: [LocalService,SingleFileUploadComponent],
+  providers: [LocalService, SingleFileUploadComponent],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss'
 })
@@ -31,7 +38,7 @@ export class LoginFormComponent implements OnInit {
   showRegister: boolean = false;
   passwordDoNotMatchError = false;
 
-  constructor(private sanitizer: DomSanitizer, private router: Router,  public storage:LocalService, private http: HttpClient) {
+  constructor(private notificationService: NotificationService, private store: LocalService, private sanitizer: DomSanitizer, private router: Router, public storage: LocalService, private http: HttpClient) {
 
   }
 
@@ -54,22 +61,27 @@ export class LoginFormComponent implements OnInit {
   //get userName
   login(): void {
     if (this.loginForm.valid) {
-      this.http.post(AppSettings.API_ENDPOINT + "/login", this.loginForm.value)
-        .subscribe((data:any) => {
+      this.http.post(AppSettings.API_ENDPOINT + "/login/" + this.loginForm.value.email, this.loginForm.value)
+        .subscribe((data: any) => {
           console.log(data.password !== this.loginForm.value.password)
-
-
-          if(data.password !== this.loginForm.value.password){
+          
+          
+          if (data.password !== this.loginForm.value.password) {
+            this.notificationService.error("Username or Passwrod incorect!")
             return;
           }
-          if (data ) {
+          if (data) {
             let objectURL = 'data:image/png;base64,' + data.image;
             data.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
             data.image = data.image.changingThisBreaksApplicationSecurity
             this.storage.setSettings(data)
           }
         })
+    } else {
+      this.notificationService.error("Account Not Found!")
+      return;
     }
+
   }
 
   showRegisterForm() {
@@ -83,14 +95,24 @@ export class LoginFormComponent implements OnInit {
     }
     delete this.registerForm.value.confirmPassword
     this.http.post(AppSettings.API_ENDPOINT + "/register", this.registerForm.value)
-      .subscribe()
+      .subscribe((res) => {
+        this.store.setSettings(res)
+        this.showRegister = false;
+      })
   }
 
-  logOut(){
+  logOut() {
     this.storage.cleanAll()
   }
 
-  goToMyDataPage(){
+  goToMyDataPage() {
     this.router.navigate(["/myData"]);
+  }
+
+  deleteAccount() {
+    this.http.delete(AppSettings.API_ENDPOINT + "/deleteAccount/" + this.store.getUserSettings().id)
+      .subscribe((res) => {
+        this.storage.cleanAll()
+      })
   }
 }

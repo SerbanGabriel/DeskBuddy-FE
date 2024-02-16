@@ -65,13 +65,18 @@
     <mat-divider></mat-divider>
     <mat-card-actions>
       <div class="d-flex flex-column">
-        <button mat-button>
+        <button (click)="goToMyDataPage()" class="d-flex justify-content-start" mat-button>
           <i class="bi bi-cart-fill"></i>
           Shoping cart
         </button>
+
         <button (click)="goToMyDataPage()" class="d-flex justify-content-start" mat-button>
           <i class="bi bi-file-text"></i>
           My Data
+        </button>
+        <button (click)="deleteAccount()" class="d-flex justify-content-start" mat-button>
+          <mat-icon>delete_forever</mat-icon>
+          Delete account
         </button>
 
       </div>
@@ -83,3 +88,4 @@
 
   </mat-card>
 </div>
+

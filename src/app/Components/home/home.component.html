@@ -1,46 +1,48 @@
+
 <app-news></app-news>
 
-<h3 class="my-4" style="font-family: serif">Best Deals!</h3>
-<div class=" wrappedContainer">
-    <mat-card class="example-card">
-        <img role="presentation" loading="lazy"
-            src="https://assets.wfcdn.com/im/17438532/scale-h308-w448%5Ecompr-r85/2681/268152561/default_name.jpg" />
-    </mat-card>
-    <mat-card class="example-card">
-        <img role="presentation" loading="lazy"
-            src="https://assets.wfcdn.com/im/32792995/scale-h308-w448%5Ecompr-r85/2681/268152573/default_name.jpg" />
-    </mat-card>
-    <mat-card class="example-card">
-        <img role="presentation" loading="lazy"
-            src="https://assets.wfcdn.com/im/21442082/scale-h308-w448%5Ecompr-r85/2681/268152574/default_name.jpg" />
-    </mat-card>
-    <mat-card class="example-card">
-        <img role="presentation" loading="lazy"
-            src="https://assets.wfcdn.com/im/94893148/scale-h308-w448%5Ecompr-r85/2681/268152558/default_name.jpg" />
-    </mat-card>
+    <h3 class="my-4" style="font-family: serif">Best Deals!</h3>
+    <div class=" wrappedContainer">
+        <mat-card class="example-card">
+            <img role="presentation" loading="lazy"
+                src="https://assets.wfcdn.com/im/17438532/scale-h308-w448%5Ecompr-r85/2681/268152561/default_name.jpg" />
+        </mat-card>
+        <mat-card class="example-card">
+            <img role="presentation" loading="lazy"
+                src="https://assets.wfcdn.com/im/32792995/scale-h308-w448%5Ecompr-r85/2681/268152573/default_name.jpg" />
+        </mat-card>
+        <mat-card class="example-card">
+            <img role="presentation" loading="lazy"
+                src="https://assets.wfcdn.com/im/21442082/scale-h308-w448%5Ecompr-r85/2681/268152574/default_name.jpg" />
+        </mat-card>
+        <mat-card class="example-card">
+            <img role="presentation" loading="lazy"
+                src="https://assets.wfcdn.com/im/94893148/scale-h308-w448%5Ecompr-r85/2681/268152558/default_name.jpg" />
+        </mat-card>
 
-</div>
+    </div>
 
-<div class="mt-4 wrappedContainer">
-    <div *ngFor="let item of items">
-        <div class="card">
-            <img role="presentation" loading="lazy" class="card-img-top p-5 itemImage" [src]="item.image"
-                alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">{{item.title}}</h5>
-                <p class="card-text">{{item.description}}</p>
-                <div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <a (click)="addToCart(item)" class="btn btn-primary">Add to cart <i class="bi bi-cart ms-3"></i></a>
-                        <a>{{item.price}}$</a>
+    <div class="mt-4 wrappedContainer">
+        <div *ngFor="let item of items">
+            <div class="card">
+                <img role="presentation" loading="lazy" class="card-img-top p-5 itemImage" [src]="item.image"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.title}}</h5>
+                    <p class="card-text">{{item.description}}</p>
+                    <div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <a (click)="addToCart(item)" class="btn btn-primary">Add to cart <i
+                                    class="bi bi-cart ms-3"></i></a>
+                            <a>{{item.price}}$</a>
+                        </div>
+
+                        <button *ngIf="store.getUserSettings()?.isAdmin" class="imgBtn mt-2" type="button"
+                            mat-raised-button (click)="delete(item)">
+                            <span> Delete </span>
+                        </button>
                     </div>
-
-                    <button *ngIf="store.getUserSettings()?.isAdmin" class="imgBtn mt-2" type="button" mat-raised-button (click)="delete(item)">
-                        <span> Delete </span>
-                    </button>
                 </div>
             </div>
         </div>
     </div>
-
-</div>

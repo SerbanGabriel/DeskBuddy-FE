@@ -1,4 +1,11 @@
+
 <div class="container">
+  <div *ngIf="notificationService.data | async" [ngClass]=" notificationService.class | async" class="alertBanner">
+    <div class="alert alert-primary" role="alert">
+      {{notificationService.message | async}}
+    </div>
+  </div>
+
   <form [formGroup]="form">
     <div class="container p-0 d-flex align-items-center">
       <img src="https://img.freepik.com/premium-vector/furniture-logo-template-design_567288-463.jpg?w=1380" />
@@ -29,8 +36,6 @@
         <a (mouseout)="changeActiveElement()" (mouseover)="changeClass([contact])" #home id="home"
           class="navbar-brand nav-link"> <i #accountImg type="button" id="dropdownMenuButton" aria-haspopup="true"
             aria-expanded="false" data-bs-toggle="dropdown" class="bi bi-person-circle"></i>
-
-
           <div class="dropdown-menu account" (mouseout)="hideDropdown(accountForm,accountImg)"
             (mouseover)="showDropdown(accountForm,accountImg)" #accountForm aria-labelledby="dropdownMenuButton">
             <app-login-form></app-login-form>
@@ -38,7 +43,7 @@
         </a>
       </div>
       <a (mouseout)="changeActiveElement()" (mouseover)="changeClass([contact])" #home id="home"
-        class="navbar-brand nav-link" href=""> <i class="bi bi-cart"></i></a>
+        class="navbar-brand nav-link" href="/cart"> <i class="bi bi-cart"></i></a>
     </div>
   </nav>
 </div>
@@ -96,6 +101,5 @@
   </div>
 
   <p class="about">© 2002 - 2024 by Wayfair LLC, 4 Copley Place, 7th Floor, Boston, MA 02116</p>
-
-
 </div>
+

@@ -5,10 +5,11 @@ import { RouterOutlet } from '@angular/router';
 import { LoginFormComponent } from './Components/login-form/login-form.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { LocalService } from './Components/localStorage/local-storage.service';
+import { NotificationService } from './Components/notification-service/notification.service';
 
 @Component({
   selector: 'app-root',
-  providers:[LocalService],
+  providers:[LocalService,],
   standalone: true,
   imports: [RouterOutlet,MatDividerModule, CommonModule, ReactiveFormsModule, LoginFormComponent],
   templateUrl: './app.component.html',
@@ -21,9 +22,9 @@ export class AppComponent implements OnInit {
     searchText: ''
   })
 
-  constructor(public store: LocalService, @Inject(DOCUMENT) private document: Document,
+  constructor(public notificationService:NotificationService, public store: LocalService, @Inject(DOCUMENT) private document: Document,
     private fb: FormBuilder) {
-
+    
   }
 
   ngOnInit(): void {
@@ -69,3 +70,5 @@ export class AppComponent implements OnInit {
   }
 
 } 
+
+
