@@ -51,7 +51,6 @@ export class AppComponent implements OnInit {
   }
 
   searchElement() {
-    console.log(this.form.value)
   }
 
   showDropdown(accountForm:any,accountImg:any){

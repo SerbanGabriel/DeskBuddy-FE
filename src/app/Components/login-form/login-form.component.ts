@@ -36,7 +36,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log()
   }
 
   loginForm = new FormGroup({

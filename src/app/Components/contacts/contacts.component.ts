@@ -47,8 +47,6 @@ export class ContactsComponent implements OnInit{
   }
 
   onSubmit(steper:any){
-    if(steper.innerHTML){
-      console.log(this.secondFormGroup.value)
-    }
+
   }
 }
