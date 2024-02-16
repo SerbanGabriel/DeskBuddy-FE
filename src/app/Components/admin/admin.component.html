@@ -1,1 +1,28 @@
-<p>admin works!</p>
+<div class="d-flex flex-column w-25">
+    <form [formGroup]="itemForm">
+        <mat-form-field class="example-form-field">
+            <mat-label>Product Title</mat-label>
+            <input formControlName="productTitle"  matInput type="text">
+          
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Product description</mat-label>
+            <textarea formControlName="productDescription" matInput placeholder="Ex. It makes me feel..."></textarea>
+          </mat-form-field>
+          <mat-form-field class="example-form-field">
+            <mat-label>Product Price</mat-label>
+            <input  formControlName="productPrice" matInput type="number">
+            
+          </mat-form-field>
+          <mat-form-field class="example-form-field">
+            <mat-label>Product Count</mat-label>
+            <input  maxlength="12" formControlName="productCount" matInput type="number" >
+            
+          </mat-form-field>
+
+    </form>
+    
+    <button (click)="saveItem()" class="w-25" mat-raised-button color="primary">Save</button>
+    
+</div>
+
