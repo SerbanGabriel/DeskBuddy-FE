@@ -4,6 +4,7 @@ import { ContactsComponent } from "./Components/contacts/contacts.component";
 import { UserDataComponent } from "./Components/user-data/user-data.component";
 import { AdminComponent } from "./Components/admin/admin.component";
 import { CartComponent } from "./Components/cart/cart.component";
+import { SearchComponent } from "./Components/search/search.component";
 
 export const navRoutes: Route[] = [
     {path:'', component: HomeComponent},
@@ -11,4 +12,5 @@ export const navRoutes: Route[] = [
     { path: 'myData', component: UserDataComponent },
     { path: 'admin', component: AdminComponent },
     { path: 'cart', component: CartComponent },
+    { path: 'search', component: SearchComponent },
 ]

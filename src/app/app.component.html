@@ -1,4 +1,3 @@
-
 <div class="container">
   <div *ngIf="notificationService.data | async" [ngClass]=" notificationService.class | async" class="alertBanner">
     <div class="alert alert-primary" role="alert">
@@ -10,10 +9,11 @@
     <div class="container p-0 d-flex align-items-center">
       <img src="https://img.freepik.com/premium-vector/furniture-logo-template-design_567288-463.jpg?w=1380" />
       <div class="input-group mb-3 m-3">
-        <input formControlName="searchText" type="text" class="form-control shadow-none" placeholder=""
+        <input [(ngModel)]="form.value.searchText" (ngModelChange)="change(form.value.searchText)"
+          formControlName="searchText" type="text" class="form-control shadow-none" placeholder=""
           aria-label="Recipient's username" aria-describedby="basic-addon2">
         <div class="input-group-append">
-          <button (click)="searchElement()" class="btn btn-success rounded-0 rounded-end" type="button">
+          <button class="btn btn-success rounded-0 rounded-end" type="button">
             <i class="bi bi-search"></i>
           </button>
         </div>
@@ -27,8 +27,8 @@
         class="navbar-brand nav-link" href="">Home</a>
       <a (mouseout)="changeActiveElement()" (mouseover)="changeClass(home)" #contact id="contact"
         class="navbar-brand nav-link" href="contact">Contact</a>
-        <a *ngIf="store.getUserSettings()?.isAdmin" (mouseout)="changeActiveElement()" (mouseover)="changeClass(home,contact)" #admin id="admin"
-        class="navbar-brand nav-link" href="admin">Admin</a>
+      <a *ngIf="store.getUserSettings()?.isAdmin" (mouseout)="changeActiveElement()"
+        (mouseover)="changeClass(home,contact)" #admin id="admin" class="navbar-brand nav-link" href="admin">Admin</a>
     </div>
     <div class="d-flex ">
       <div class="accountNav " (mouseover)="showDropdown(accountForm,accountImg)"
@@ -47,9 +47,14 @@
     </div>
   </nav>
 </div>
-<div class="container">
+dsadsadads{{foundItems.length}}
+<div *ngIf=" !this.form.get('searchText')?.value" class="container">
   <router-outlet></router-outlet>
 </div>
+<div *ngIf="this.form.get('searchText')?.value" class="container">
+  <app-search [items]="foundItems"></app-search>
+</div>
+{{foundItems.length}}
 <hr>
 <div class="container">
   <div class="row">
@@ -102,4 +107,3 @@
 
   <p class="about">© 2002 - 2024 by Wayfair LLC, 4 Copley Place, 7th Floor, Boston, MA 02116</p>
 </div>
-

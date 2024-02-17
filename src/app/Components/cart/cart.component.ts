@@ -9,8 +9,8 @@ import { NewsComponent } from '../home/news/news.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
-import { NotificationService } from '../notification-service/notification.service';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NotificationService } from '../notification/notification.service';
 
 @Component({
   selector: 'app-cart',
@@ -39,6 +39,7 @@ export class CartComponent implements OnInit {
   }
 
   public change(event:any){
+   
   }
 
 

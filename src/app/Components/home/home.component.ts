@@ -9,7 +9,7 @@ import { NgOptimizedImage } from '@angular/common'
 import { MatButtonModule } from '@angular/material/button';
 import Appsettings from '../AppSettings';
 import { LocalService } from '../localStorage/local-storage.service';
-import { NotificationService } from '../notification-service/notification.service';
+import { NotificationService } from '../notification/notification.service';
 
 @Component({
   selector: 'app-home',

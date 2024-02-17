@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class LocalService {
@@ -22,7 +23,6 @@ export class LocalService {
       let data:any = localStorage.getItem(this.storageName);
       return JSON.parse(data);
     } 
-
   }
 
   clearUserSettings() {

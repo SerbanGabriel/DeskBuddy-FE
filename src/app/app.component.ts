@@ -1,17 +1,21 @@
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { LoginFormComponent } from './Components/login-form/login-form.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { LocalService } from './Components/localStorage/local-storage.service';
-import { NotificationService } from './Components/notification-service/notification.service';
+import { HttpClient } from '@angular/common/http';
+import Appsettings from './Components/AppSettings';
+import { SearchComponent } from './Components/search/search.component';
+import { DomSanitizer } from '@angular/platform-browser';
+import { NotificationService } from './Components/notification/notification.service';
 
 @Component({
   selector: 'app-root',
-  providers:[LocalService,],
+  providers: [LocalService,],
   standalone: true,
-  imports: [RouterOutlet,MatDividerModule, CommonModule, ReactiveFormsModule, LoginFormComponent],
+  imports: [SearchComponent, RouterOutlet, MatDividerModule, CommonModule, ReactiveFormsModule, LoginFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -19,16 +23,19 @@ export class AppComponent implements OnInit {
   activeLink = "";
   title = 'deskbuddy';
   form = this.fb.group({
-    searchText: ''
+    searchText: ['']
   })
+  foundItems:any = [];
 
-  constructor(public notificationService:NotificationService, public store: LocalService, @Inject(DOCUMENT) private document: Document,
+  constructor(private sanitizer: DomSanitizer, private router: Router, private http: HttpClient, public notificationService: NotificationService, public store: LocalService, @Inject(DOCUMENT) private document: Document,
     private fb: FormBuilder) {
-    
+
   }
 
   ngOnInit(): void {
     this.changeActiveElement()
+
+    console.log(this.form.get('searchText')?.value)
   }
 
   changeActiveElement() {
@@ -49,14 +56,27 @@ export class AppComponent implements OnInit {
     activeElement?.classList.add("active")
   }
 
-  changeClass(tab: any,tab2?:any) {
+  changeClass(tab: any, tab2?: any) {
     tab.classList?.remove("active")
-    if(tab2){
+    if (tab2) {
       tab2.classList.remove("active")
     }
   }
 
-  searchElement() {
+  change(value: any) {
+    if (value) {
+      this.http.get(Appsettings.API_ENDPOINT + "/findItemBySearchText/" + this.form.get('searchText')?.value).subscribe((res: any) => {
+        res.forEach((x: any) => {
+          x.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + x.image1)
+        })
+        this.foundItems = res;
+      })
+    }
+    if(!this.form.get('searchText')?.value){
+      this.foundItems= []
+
+    }
+   
   }
 
   showDropdown(accountForm: any, accountImg: any) {
@@ -69,6 +89,6 @@ export class AppComponent implements OnInit {
     accountImg.classList.remove('onForm')
   }
 
-} 
+}
 
 

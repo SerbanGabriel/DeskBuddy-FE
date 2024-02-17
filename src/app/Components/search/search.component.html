@@ -1,82 +1,29 @@
-<div class="mt-4">
-    <div class="d-flex flex-wrap justify-content-start gap-4">
-        <div class="card border-success mb-3 item">
-            <div class="card-body text-success">
-                <h5 class="card-title">Success card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
+<div class="mt-4 wrappedContainer">
+    <div *ngFor="let item of items">
+        <div class="card">
+            <img role="presentation" loading="lazy" class="card-img-top p-5 itemImage" [src]="item.image"
+                alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{item.title}}</h5>
+                <p class="card-text">{{item.description}}</p>
+                <div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <a (click)="addToCart(item)" class="btn btn-primary">Add to cart <i
+                                class="bi bi-cart ms-3"></i></a>
+                        <a>{{item.price}}$</a>
+                    </div>
+
+                    <button *ngIf="store.getUserSettings()?.isAdmin" class="imgBtn mt-2" type="button"
+                        mat-raised-button>
+                        <span> Delete </span>
+                    </button>
+                </div>
             </div>
-            <div class="card-footer bg-transparent border-success">Footer</div>
-        </div>
-        <div class="card border-success mb-3 item">
-            <div class="card-body text-success">
-                <h5 class="card-title">Success card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-            </div>
-            <div class="card-footer bg-transparent border-success">Footer</div>
-        </div>
-        <div class="card border-success mb-3 item">
-            <div class="card-body text-success">
-                <h5 class="card-title">Success card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-            </div>
-            <div class="card-footer bg-transparent border-success">Footer</div>
-        </div>
-        <div class="card border-success mb-3 item">
-            <div class="card-body text-success">
-                <h5 class="card-title">Success card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-            </div>
-            <div class="card-footer bg-transparent border-success">Footer</div>
-        </div>
-        <div class="card border-success mb-3 item">
-            <div class="card-body text-success">
-                <h5 class="card-title">Success card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-            </div>
-            <div class="card-footer bg-transparent border-success">Footer</div>
-        </div>
-        <div class="card border-success mb-3 item">
-            <div class="card-body text-success">
-                <h5 class="card-title">Success card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-            </div>
-            <div class="card-footer bg-transparent border-success">Footer</div>
-        </div>
-        <div class="card border-success mb-3 item">
-            <div class="card-body text-success">
-                <h5 class="card-title">Success card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-            </div>
-            <div class="card-footer bg-transparent border-success">Footer</div>
-        </div>
-        <div class="card border-success mb-3 item">
-            <div class="card-body text-success">
-                <h5 class="card-title">Success card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-            </div>
-            <div class="card-footer bg-transparent border-success">Footer</div>
         </div>
     </div>
 </div>
 
-
-<div class="container">
+<div *ngIf="!items?.length" class="container">
     <div class="line"><mat-divider></mat-divider></div>
     <div class="text mat-typography">No results</div>
     <div class="line"><mat-divider></mat-divider></div>

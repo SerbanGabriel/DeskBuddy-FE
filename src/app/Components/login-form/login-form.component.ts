@@ -14,7 +14,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { NotificationService } from '../notification-service/notification.service';
+import { NotificationService } from '../notification/notification.service';
 
 @Injectable()
 @Component({
