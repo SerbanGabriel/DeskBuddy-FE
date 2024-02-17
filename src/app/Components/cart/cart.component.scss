@@ -25,7 +25,15 @@
 .wrappedContainer {
     display: grid;
     grid-gap: 2em;
+    width: 60%;
+    height:14em;
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+}
+
+
+.shopItems{
+    display: flex;
+    justify-content: space-between;
 }
 
 .cart {
@@ -42,9 +50,9 @@
     font-size: 3em
 }
 
-
 .payment{
-    position: fixed;
-    right: 20vw;
-    bottom: 20vh;
+    width: auto;
+    margin: 0;
+    display: flex;
+    justify-content: end;
 }

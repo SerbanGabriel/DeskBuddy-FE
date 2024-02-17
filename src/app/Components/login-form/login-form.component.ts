@@ -62,19 +62,21 @@ export class LoginFormComponent implements OnInit {
   login(): void {
     if (this.loginForm.valid) {
       this.http.post(AppSettings.API_ENDPOINT + "/login/" + this.loginForm.value.email, this.loginForm.value)
-        .subscribe((data: any) => {
-          console.log(data.password !== this.loginForm.value.password)
-          
-          
-          if (data.password !== this.loginForm.value.password) {
+        .subscribe({
+          next:(data:any) => {
+            if (data.password !== this.loginForm.value.password) {
+              this.notificationService.error("Username or Passwrod incorect!")
+              return;
+            }
+            if (data) {
+              let objectURL = 'data:image/png;base64,' + data.image;
+              data.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+              data.image = data.image.changingThisBreaksApplicationSecurity
+              this.storage.setSettings(data)
+            }
+          },
+          error:() => {
             this.notificationService.error("Username or Passwrod incorect!")
-            return;
-          }
-          if (data) {
-            let objectURL = 'data:image/png;base64,' + data.image;
-            data.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-            data.image = data.image.changingThisBreaksApplicationSecurity
-            this.storage.setSettings(data)
           }
         })
     } else {
@@ -83,6 +85,9 @@ export class LoginFormComponent implements OnInit {
     }
 
   }
+
+
+
 
   showRegisterForm() {
     this.showRegister = !this.showRegister
@@ -107,6 +112,11 @@ export class LoginFormComponent implements OnInit {
 
   goToMyDataPage() {
     this.router.navigate(["/myData"]);
+  }
+
+  goTocart(){
+    this.router.navigate(["/cart"]);
+    
   }
 
   deleteAccount() {

@@ -1,62 +1,65 @@
 <form [formGroup]="form" class="d-flex flex-column w-25">
-  <mat-form-field class="example-form-field">
-    <mat-label>First Name</mat-label>
-    <input formControlName="firstName" matInput type="text">
-    @if (form.get('firstName')?.value) {
-    <button matSuffix mat-icon-button aria-label="Clear" (click)="clear('firstName')">
-      <mat-icon>close</mat-icon>
-    </button>
-    }
-  </mat-form-field>
+    <mat-form-field class="example-form-field">
+        <mat-label>First Name</mat-label>
+        <input formControlName="firstName" matInput type="text" >
+        @if (form.get('firstName')?.value) {
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="clear('firstName')">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      </mat-form-field>
 
-  <mat-form-field class="example-form-field">
-    <mat-label>Last Name</mat-label>
-    <input formControlName="lastName" matInput type="text">
-    @if (form.get('lastName')?.value) {
-    <button matSuffix mat-icon-button aria-label="Clear" (click)="clear('lastName')">
-      <mat-icon>close</mat-icon>
-    </button>
-    }
-  </mat-form-field>
+      <mat-form-field class="example-form-field">
+        <mat-label>Last Name</mat-label>
+        <input formControlName="lastName" matInput type="text" >
+        @if (form.get('lastName')?.value) {
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="clear('lastName')">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      </mat-form-field>
 
-  <mat-form-field class="example-form-field">
-    <mat-label>Email address</mat-label>
-    <input formControlName="email" matInput type="text">
-    @if (form.get('email')?.value) {
-    <button matSuffix mat-icon-button aria-label="Clear" (click)="clear('email')">
-      <mat-icon>close</mat-icon>
-    </button>
-    }
-  </mat-form-field>
+      <mat-form-field class="example-form-field">
+        <mat-label>Email address</mat-label>
+        <input formControlName="email" matInput type="text" >
+        @if (form.get('email')?.value) {
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="clear('email')">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      </mat-form-field>
 
-  <mat-form-field class="example-form-field">
-    <mat-label>Password</mat-label>
-    <input formControlName="password" matInput type="text">
-    @if (form.get('password')?.value) {
-    <button matSuffix mat-icon-button aria-label="Clear" (click)="clear('password')">
-      <mat-icon>close</mat-icon>
-    </button>
-    }
-  </mat-form-field>
+      <mat-form-field class="example-form-field">
+        <mat-label>Password</mat-label>
+        <input formControlName="password" matInput type="text" >
+        @if (form.get('password')?.value) {
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="clear('password')">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      </mat-form-field>
 
-  <mat-form-field class="example-form-field">
-    <mat-label>Confirmg Password</mat-label>
-    <input formControlName="confirmPassword" matInput type="text">
-    @if (form.get('confirmPassword')?.value) {
-    <button matSuffix mat-icon-button aria-label="Clear" (click)="clear('confirmPassword')">
-      <mat-icon>close</mat-icon>
-    </button>
-    }
-  </mat-form-field>
-  <div class="d-flex align-items-center ">
-    <div>
-      <button type="button" mat-raised-button (click)="imageInput.click()">
-        <span> Change Profile image </span>
-      </button>
-      <input accept=".png" hidden (change)="fileService.processFile(imageInput)" #imageInput type="file" id="file">
-    </div>
-    <mat-spinner class="mx-3" *ngIf="fileService.selectedFile?.pending" class="spinner"></mat-spinner>
-    <mat-icon class="mx-3" *ngIf="fileService.selectedFile?.status ==='ok'">check_circle_outline</mat-icon>
-    <mat-icon class="mx-3" *ngIf="fileService.selectedFile?.status ==='fail'">block icon</mat-icon>
-  </div>
+      <mat-form-field class="example-form-field">
+        <mat-label>Confirmg Password</mat-label>
+        <input formControlName="confirmPassword" matInput type="text" >
+        @if (form.get('confirmPassword')?.value) {
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="clear('confirmPassword')">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      </mat-form-field>
+      <div class="d-flex align-items-center ">
+        <div> 
+            <button type="button" mat-raised-button (click)="imageInput.click()">
+                <span > Change Profile image </span>
+            </button>
+            <button (click)="savChanges()" class="d-flex justify-content-start mt-3" mat-button>
+              Save
+             </button>
+            <input accept=".png" hidden (change)="fileService.processFile(imageInput)" #imageInput type="file" id="file">
+        </div>
+        <mat-spinner class="mx-3" *ngIf="fileService.selectedFile?.pending" class="spinner"></mat-spinner>
+        <mat-icon class="mx-3" *ngIf="fileService.selectedFile?.status ==='ok'">check_circle_outline</mat-icon>
+        <mat-icon class="mx-3" *ngIf="fileService.selectedFile?.status ==='fail'">block icon</mat-icon>
+     </div>
 </form>

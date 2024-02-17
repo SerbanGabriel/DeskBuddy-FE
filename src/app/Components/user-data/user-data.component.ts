@@ -7,6 +7,9 @@ import { LocalService } from '../localStorage/local-storage.service';
 import { SingleFileUploadComponent } from '../single-file-upload/single-file-upload.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import Appsettings from '../AppSettings';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-user-data',
@@ -25,7 +28,7 @@ export class UserDataComponent implements OnInit {
     confirmPassword:''
   })
 
-  constructor(public fileService:SingleFileUploadComponent, private fb:FormBuilder, private store: LocalService){
+  constructor(private sanitizer: DomSanitizer,   public storage: LocalService, private http:HttpClient, public fileService:SingleFileUploadComponent, private fb:FormBuilder, private store: LocalService){
   }
 
   ngOnInit(): void {
@@ -37,5 +40,17 @@ export class UserDataComponent implements OnInit {
 
   clear(formControlName:string){
     this.form.get(formControlName)?.setValue('')
+  }
+
+  savChanges(){
+    this.http.put(Appsettings.API_ENDPOINT + "/saveUserData/" + this.store.getUserSettings().id, this.form.value).subscribe({
+      next:(data:any) => {
+        console.log(data)
+        let objectURL = 'data:image/png;base64,' + data.image;
+        data.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        data.image = data.image.changingThisBreaksApplicationSecurity
+        this.storage.setSettings(data)
+      }
+    })
   }
 }

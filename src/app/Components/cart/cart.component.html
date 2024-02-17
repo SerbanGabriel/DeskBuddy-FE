@@ -1,5 +1,5 @@
-<div class="mt-4 wrappedContainer">
-    <div *ngFor="let item of items">
+<div class="mt-4 shopItems">
+    <div class="wrappedContainer" *ngFor="let item of items">
         <div class="card">
             <div class="delete d-flex justify-content-end ">
                 <button class="deleteBtn" (click)="delete(item)" mat-mini-fab color="warn">
@@ -24,85 +24,85 @@
                 </div>
             </div>
         </div>
+       
     </div>
-</div>
+    <div class="payment container">
+        <form [formGroup]="payForm">
+            <div class="card rounded-3">
+                <div class="card-body mx-1 my-2">
+                    <div class="d-flex align-items-center">
+                        <div class="me-3">
+                            <i class="fa fa-cc-visa cardVisa "></i>
+                        </div>
+                        <div>
+                            <p class="d-flex flex-column mb-0">
+                                <b>{{payForm.value.name}}</b><span
+                                    class="small text-muted">{{payForm.value.number}}</span>
+                                <span style="width: 100%;" class="small text-muted d-flex justify-content-between">
+                                    {{payForm.value.expirationDate}}
 
-<div class="payment">
-    <form [formGroup]="payForm">
-        <div class="card rounded-3">
-            <div class="card-body mx-1 my-2">
-                <div class="d-flex align-items-center">
-                    <div class="me-3">
-                        <i  class="fa fa-cc-visa cardVisa "></i>
-                    </div>
-                    <div>
-                        <p class="d-flex flex-column mb-0">
-                            <b>{{payForm.value.name}}</b><span class="small text-muted">{{payForm.value.number}}</span>
-                            <span style="width: 100%;" class="small text-muted d-flex justify-content-between">
-                                {{payForm.value.expirationDate}}
-
-                                <span class="float-end">
-                                    {{payForm.value.csv}}
+                                    <span class="float-end">
+                                        {{payForm.value.csv}}
+                                    </span>
                                 </span>
-                            </span>
-                        </p>
+                            </p>
+                        </div>
                     </div>
-                </div>
-    
-                <div class="pt-3">
+
                     <div class="pt-3">
-                        <div class="d-flex flex-row pb-3">
-                            <div class="rounded border border-primary border-2 d-flex w-100 p-3 align-items-center"
-                                style="background-color: rgba(18, 101, 241, 0.07);">
-    
-                                <div class="d-flex flex-column">
-                                    <p class="mb-1 small text-primary">Card Name</p>
-                                    <input maxlength="15" formControlName="name" type="text" class="form-control form-control-sm" id="numberExample" />
+                        <div class="pt-3 d">
+                            <div class="d-flex flex-row pb-3">
+                                <div class="rounded border border-primary border-2 d-flex w-100 p-3 align-items-center"
+                                    style="background-color: rgba(18, 101, 241, 0.07);">
+
+                                    <div class="d-flex flex-column">
+                                        <p class="mb-1 small text-primary">Card Name</p>
+                                        <input maxlength="15" formControlName="name" type="text"
+                                            class="form-control form-control-sm" id="numberExample" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-row pb-3">
+                                <div class="rounded border border-primary border-2 d-flex w-100 p-3 align-items-center"
+                                    style="background-color: rgba(18, 101, 241, 0.07);">
+
+                                    <div class="d-flex flex-column">
+                                        <p class="mb-1 small text-primary">Card number</p>
+                                        <input [maxlength]="16" formControlName="number" type="text"
+                                            class="form-control form-control-sm" id="numberExample" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-row pb-3">
+                                <div class="rounded border border-primary border-2 d-flex w-100 p-3 align-items-center"
+                                    style="background-color: rgba(18, 101, 241, 0.07);">
+
+                                    <div class="d-flex flex-column">
+                                        <p class="mb-1 small text-primary">Expiration Date</p>
+                                        <input (keydown)="change($event)" maxlength="5" formControlName="expirationDate"
+                                            style="width: 5em;" type="text" class="form-control form-control-sm"
+                                            id="numberExample" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-row pb-3">
+                                <div class="rounded border border-primary border-2 d-flex w-100 p-3 align-items-center"
+                                    style="background-color: rgba(18, 101, 241, 0.07);">
+
+                                    <div class="d-flex flex-column">
+                                        <p class="mb-1 small text-primary">csv</p>
+                                        <input maxlength="3" formControlName="csv" style="width: 3em;" type="text"
+                                            class="form-control form-control-sm" id="numberExample" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-    
-                        <div class="d-flex flex-row pb-3">
-                            <div class="rounded border border-primary border-2 d-flex w-100 p-3 align-items-center"
-                                style="background-color: rgba(18, 101, 241, 0.07);">
-    
-                                <div class="d-flex flex-column">
-                                    <p class="mb-1 small text-primary">Card number</p>
-                                    <input [maxlength]="16" formControlName="number" type="text" class="form-control form-control-sm" id="numberExample" />
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="d-flex flex-row pb-3">
-                            <div class="rounded border border-primary border-2 d-flex w-100 p-3 align-items-center"
-                                style="background-color: rgba(18, 101, 241, 0.07);">
-    
-                                <div class="d-flex flex-column">
-                                    <p class="mb-1 small text-primary">Expiration Date</p>
-                                    <input (keydown)="change($event)" maxlength="5" formControlName="expirationDate" style="width: 5em;" type="text" class="form-control form-control-sm"
-                                        id="numberExample" />
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="d-flex flex-row pb-3">
-                            <div class="rounded border border-primary border-2 d-flex w-100 p-3 align-items-center"
-                                style="background-color: rgba(18, 101, 241, 0.07);">
-    
-                                <div class="d-flex flex-column">
-                                    <p class="mb-1 small text-primary">csv</p>
-                                    <input maxlength="3" formControlName="csv" style="width: 3em;" type="text" class="form-control form-control-sm"
-                                        id="numberExample" />
-                                </div>
-                            </div>
-                        </div>
-    
-    
-    
+
                     </div>
-    
-         
-    
+
                     <div class="d-flex flex-row pb-3">
                         <div class="rounded border border-primary border-2 d-flex w-100 p-3 align-items-center"
                             style="background-color: rgba(18, 101, 241, 0.07);">
@@ -119,8 +119,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
-    
-    
+        </form>
+
+
+    </div>
 </div>
