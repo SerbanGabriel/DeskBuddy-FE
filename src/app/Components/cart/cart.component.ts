@@ -48,4 +48,16 @@ export class CartComponent implements OnInit {
       this.getItems();
     })
   }
+
+  removeCount(item:any){
+    this.http.delete(Appsettings.API_ENDPOINT + "/removeCountItem/" + item.id+ "/"+ this.store.getUserSettings().id).subscribe((res:any) => {
+      this.getItems();
+    })
+  }
+
+  addCount(item:any){
+    this.http.get(Appsettings.API_ENDPOINT + "/addItemCount/" + item.id+ "/"+ this.store.getUserSettings().id,{}).subscribe((res:any) => {
+      this.getItems();
+    })
+  }
 }

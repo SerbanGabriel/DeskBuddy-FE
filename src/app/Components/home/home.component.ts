@@ -1,27 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsComponent } from './news/news.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import AppSettings  from '../AppSettings';
+import AppSettings from '../AppSettings';
 import { CommonModule } from '@angular/common';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgOptimizedImage } from '@angular/common'
 import { MatButtonModule } from '@angular/material/button';
 import Appsettings from '../AppSettings';
 import { LocalService } from '../localStorage/local-storage.service';
+import { NotificationService } from '../notification-service/notification.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  providers:[LocalService],
-  imports: [NewsComponent,MatCardModule,MatButtonModule,NgOptimizedImage,HttpClientModule,CommonModule],
+  providers: [LocalService],
+  imports: [NewsComponent, MatCardModule, MatButtonModule, NgOptimizedImage, HttpClientModule, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit{
-  public items:any;
+export class HomeComponent implements OnInit {
+  public items: any;
 
-  constructor( public store:LocalService, private sanitizer: DomSanitizer,private http: HttpClient){
+  constructor(private notification: NotificationService, public store: LocalService, private sanitizer: DomSanitizer, private http: HttpClient) {
 
   }
 
@@ -29,25 +30,26 @@ export class HomeComponent implements OnInit{
     this.getItems()
   }
 
-  getItems(){
-    this.http.get(AppSettings.API_ENDPOINT + "/all").subscribe((res:any) => {
+  getItems() {
+    this.http.get(AppSettings.API_ENDPOINT + "/all").subscribe((res: any) => {
 
-      res.forEach((x:any) => {
-        x.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'+ x.image1)
+      res.forEach((x: any) => {
+        x.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + x.image1)
       })
-       this.items = res
+      this.items = res
     })
   }
 
-  delete(item:any){
-      this.http.delete(Appsettings.API_ENDPOINT + "/deleteItem/" + item.id).subscribe(() => {
-        this.getItems()
-      })
+  delete(item: any) {
+    this.http.delete(Appsettings.API_ENDPOINT + "/deleteItem/" + item.id).subscribe(() => {
+      this.getItems()
+    })
   }
 
-  addToCart(item:any){
+  addToCart(item: any) {
     console.log(item)
-    this.http.post(Appsettings.API_ENDPOINT + "/addToCart/" + item.id + "/" + this.store.getUserSettings().id,{}).subscribe(() => {
+    this.http.post(Appsettings.API_ENDPOINT + "/addToCart/" + item.id + "/" + this.store.getUserSettings().id, {}).subscribe(() => {
+      this.notification.success("Item added to cart!")
       this.getItems()
     })
   }
