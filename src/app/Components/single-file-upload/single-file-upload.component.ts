@@ -96,8 +96,7 @@ export class SingleFileUploadComponent {
     else {
     this.formData.append('user', jsonStr)
     } 
-    
    
-    return this.http.post<any>(Appsettings.API_ENDPOINT + "/save", this.formData).pipe(finalize(() => this.selectedFile.pending = false)).subscribe()
+    return this.http.post<any>(Appsettings.API_ENDPOINT + "/save", this.formData)
   }
 }

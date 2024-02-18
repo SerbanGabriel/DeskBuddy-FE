@@ -16,7 +16,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent  {
   itemForm = this.fb.group({
     title: ['', [Validators.required, Validators.max(20)]],
     description: ['', [Validators.required]],
@@ -29,19 +29,9 @@ export class AdminComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer, private store: LocalService, public fileService: SingleFileUploadComponent, private fb: FormBuilder) {
 
   }
-  ngOnInit(): void {
-    let data  = this.store.getEditItem()
-    console.log(data)
-    this.fileService.image = data.image.changingThisBreaksApplicationSecurity
-    this.itemForm.patchValue({
-      title: data.title,
-      description: data.description,
-      price: data.price,
-      cardId:data.id
-    })
-  }
+  
 
   save() {
-    this.fileService.save(this.itemForm.value);
+    this.fileService.save(this.itemForm.value).subscribe();
   }
 }

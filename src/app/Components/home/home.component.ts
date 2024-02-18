@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
 
   edit(item:any){
     this.store.editItem(item)
-    this.router.navigate(["admin"]);
+    this.router.navigate(["edit"]);
   }
 
   addToCart(item: any) {
