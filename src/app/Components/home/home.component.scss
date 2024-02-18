@@ -32,7 +32,7 @@
     -webkit-box-orient: vertical;
 }
   .card >img{
-    height: 17em;
+    height: 14em;
     object-fit: contain;
   }
 
@@ -52,3 +52,15 @@
     right: 0;
     text-align: center;
 }
+
+.card-body{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.editBTn{
+  position: absolute;
+  left: -1em;
+  top: -1em;
+}
+

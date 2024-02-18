@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class LocalService {
   private storageName: string = "Settings";
+  editedItem: any;
 
   constructor() { }
 
@@ -15,22 +15,35 @@ export class LocalService {
     } else {
       console.log('Web Storage is not supported in this environment.');
     }
-   
+  }
+
+  editItem(item: any) {
+    if (typeof localStorage !== 'undefined') {
+      localStorage?.setItem("itemForEdit", JSON.stringify(item));
+    }
+  }
+
+  getEditItem() {
+    if (typeof localStorage !== 'undefined') {
+      let data: any = localStorage?.getItem("itemForEdit");
+
+      return JSON.parse(data);
+    }
   }
 
   getUserSettings() {
     if (typeof localStorage !== 'undefined') {
-      let data:any = localStorage.getItem(this.storageName);
+      let data: any = localStorage?.getItem(this.storageName);
       return JSON.parse(data);
-    } 
+    }
   }
 
   clearUserSettings() {
-    localStorage.removeItem(this.storageName);
+    localStorage?.removeItem(this.storageName);
   }
 
   cleanAll() {
-    localStorage.clear()
+    localStorage?.clear()
   }
 
 }

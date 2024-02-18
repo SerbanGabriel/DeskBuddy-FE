@@ -25,6 +25,9 @@
     <div class="mt-4 wrappedContainer">
         <div *ngFor="let item of items">
             <div class="card">
+                <button class="editBTn" type="button" mat-raised-button (click)="edit(item)">
+                    <span> Edit </span>
+                  </button>
                 <img role="presentation" loading="lazy" class="card-img-top p-5 itemImage" [src]="item.image"
                     alt="Card image cap">
                 <div class="card-body">
@@ -44,5 +47,8 @@
                     </div>
                 </div>
             </div>
+    
         </div>
     </div>
+
+

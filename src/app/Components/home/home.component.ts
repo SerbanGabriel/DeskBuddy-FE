@@ -10,19 +10,23 @@ import { MatButtonModule } from '@angular/material/button';
 import Appsettings from '../AppSettings';
 import { LocalService } from '../localStorage/local-storage.service';
 import { NotificationService } from '../notification/notification.service';
+import {MatInputModule} from '@angular/material/input';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
   providers: [LocalService],
-  imports: [NewsComponent, MatCardModule, MatButtonModule, NgOptimizedImage, HttpClientModule, CommonModule],
+  imports: [NewsComponent,MatCardModule,MatInputModule, MatButtonModule, NgOptimizedImage, HttpClientModule, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
   public items: any;
 
-  constructor(private notification: NotificationService, public store: LocalService, private sanitizer: DomSanitizer, private http: HttpClient) {
+  constructor(private router: Router,private fb: FormBuilder, private notification: NotificationService, public store: LocalService, private sanitizer: DomSanitizer, private http: HttpClient) {
 
   }
 
@@ -46,8 +50,12 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  edit(item:any){
+    this.store.editItem(item)
+    this.router.navigate(["admin"]);
+  }
+
   addToCart(item: any) {
-    console.log(item)
     this.http.post(Appsettings.API_ENDPOINT + "/addToCart/" + item.id + "/" + this.store.getUserSettings().id, {}).subscribe(() => {
       this.notification.success("Item added to cart!")
       this.getItems()

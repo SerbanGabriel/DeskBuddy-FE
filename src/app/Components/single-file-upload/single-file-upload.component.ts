@@ -28,8 +28,7 @@ class ImageSnippet {
 export class SingleFileUploadComponent {
   selectedFile: any;
   formData: any = new FormData();
-  image: any
-  reimage: any
+  image:any
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer, private store: LocalService) { }
 
@@ -41,11 +40,10 @@ export class SingleFileUploadComponent {
       const formData = new FormData();
       formData.append('image', this.selectedFile.file);
       this.selectedFile.pending = true;
-      
 
-      return this.http.post<any>(Appsettings.API_ENDPOINT + "/upload/"+ this.store.getUserSettings().id, formData).pipe(finalize(() => this.selectedFile.pending = false)).subscribe({
+
+      return this.http.post<any>(Appsettings.API_ENDPOINT + "/upload/" + this.store.getUserSettings().id, formData).pipe(finalize(() => this.selectedFile.pending = false)).subscribe({
         next: (res: any) => {
-          console.log(res)
           let user = this.store.getUserSettings();
           let objectURL = 'data:image/png;base64,' + res.photo;
           user.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
@@ -65,14 +63,13 @@ export class SingleFileUploadComponent {
 
   processFileForItemPreview(imageInput: any, itemForm: any) {
     const file: File = imageInput.files[0];
-
     const reader = new FileReader();
     reader.addEventListener('load', (event: any) => {
       this.selectedFile = new ImageSnippet(event.target.result, file);
 
       if (this.formData.get('firstImage')) {
         this.formData.set('firstImage', this.selectedFile.file)
-      }else{
+      } else {
         this.formData.append('firstImage', this.selectedFile.file);
       }
 
@@ -91,8 +88,16 @@ export class SingleFileUploadComponent {
     reader.readAsDataURL(file);
   }
 
-  save() {
+  save(value: any) {
+    const jsonStr = JSON.stringify(value);
+    if (this.formData.get('user')) {
+      this.formData.set('user', jsonStr)
+    }
+    else {
+    this.formData.append('user', jsonStr)
+    } 
+    
+   
     return this.http.post<any>(Appsettings.API_ENDPOINT + "/save", this.formData).pipe(finalize(() => this.selectedFile.pending = false)).subscribe()
   }
-
 }
