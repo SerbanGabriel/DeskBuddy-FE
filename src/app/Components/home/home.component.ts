@@ -36,7 +36,6 @@ export class HomeComponent implements OnInit {
 
   getItems() {
     this.http.get(AppSettings.API_ENDPOINT + "/all").subscribe((res: any) => {
-
       res.forEach((x: any) => {
         x.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + x.image1)
       })

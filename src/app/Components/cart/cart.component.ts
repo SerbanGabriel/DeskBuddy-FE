@@ -50,13 +50,13 @@ export class CartComponent implements OnInit {
   getItems(){
     this.http.get(Appsettings.API_ENDPOINT + "/userItems/"+ this.store.getUserSettings().id,{}).subscribe((res:any) => {
       res.items.forEach((x:any) => {
-        console.log(this.total)
         if(x.count === 0){
           this.total = x.price
         }
         else{
           this.total = x.price * x.count
         }        
+        this.total = Number(this.total.toFixed(2));
         x.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'+ x.image1)
       })
       

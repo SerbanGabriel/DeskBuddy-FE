@@ -39,7 +39,8 @@ export class EditComponent {
       title: data.title,
       description: data.description,
       price: data.price,
-      cardId:data.id
+      cardId:data.id,
+      count:data.count
     })
   }
 
