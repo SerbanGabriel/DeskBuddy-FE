@@ -54,6 +54,7 @@ export class HomeComponent implements OnInit {
   delete(item: any) {
     this.http.delete(Appsettings.API_ENDPOINT + "/deleteItem/" + item.id).subscribe(() => {
       this.getItems()
+      this.notification.success("Item successfuly removed!")
     })
   }
 

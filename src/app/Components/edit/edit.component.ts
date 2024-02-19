@@ -8,6 +8,7 @@ import { LocalService } from '../localStorage/local-storage.service';
 import { SingleFileUploadComponent } from '../single-file-upload/single-file-upload.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { NotificationService } from '../notification/notification.service';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class EditComponent {
   })
 
 
-  constructor(private router: Router,private sanitizer: DomSanitizer, private store: LocalService, public fileService: SingleFileUploadComponent, private fb: FormBuilder) {
+  constructor(private notification: NotificationService, private router: Router,private sanitizer: DomSanitizer, private store: LocalService, public fileService: SingleFileUploadComponent, private fb: FormBuilder) {
 
   }
   ngOnInit(): void {
@@ -46,6 +47,8 @@ export class EditComponent {
 
   save() {
     this.fileService.save(this.itemForm.value).subscribe(data=> {
+      this.notification.success("Item successfuly edited!")
+
     this.router.navigate([""]);
     })
   }

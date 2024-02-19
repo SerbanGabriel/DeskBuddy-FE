@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SingleFileUploadComponent } from '../single-file-upload/single-file-upload.component';
 import { LocalService } from '../localStorage/local-storage.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NotificationService } from '../notification/notification.service';
 
 @Component({
   selector: 'app-admin',
@@ -26,12 +27,14 @@ export class AdminComponent  {
   })
 
 
-  constructor(private sanitizer: DomSanitizer, private store: LocalService, public fileService: SingleFileUploadComponent, private fb: FormBuilder) {
+  constructor(private notification: NotificationService, private sanitizer: DomSanitizer, private store: LocalService, public fileService: SingleFileUploadComponent, private fb: FormBuilder) {
 
   }
   
 
   save() {
-    this.fileService.save(this.itemForm.value).subscribe();
+    this.fileService.save(this.itemForm.value).subscribe(() => {
+      this.notification.success("Item added to cart!")
+    });
   }
 }
