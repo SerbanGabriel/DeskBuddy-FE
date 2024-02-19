@@ -27,12 +27,12 @@
         class="navbar-brand nav-link" href="">Home</a>
       <a (mouseout)="changeActiveElement()" (mouseover)="changeClass(home)" #contact id="contact"
         class="navbar-brand nav-link" goTo="" href="contact">Contact</a>
-      <a (mouseout)="changeActiveElement()" (mouseover)="changeClass(home)" #contact id="admin"
+      <a *ngIf="store?.getUserSettings()?.isAdmin"  (mouseout)="changeActiveElement()" (mouseover)="changeClass(home)" #contact id="admin"
         class="navbar-brand nav-link" goTo="" href="admin">Admin</a>
 
     </div>
-    <div class="d-flex ">
-      <div class="accountNav " (mouseover)="showDropdown(accountForm,accountImg)"
+    <div class="d-flex">
+      <div class="accountNav" (mouseover)="showDropdown(accountForm,accountImg)"
         (mouseout)="hideDropdown(accountForm,accountImg)" (mouseover)="changeClass([home,contact])">
         <a (mouseout)="changeActiveElement()" (mouseover)="changeClass([contact])" #home id="home"
           class="navbar-brand nav-link"> <i #accountImg type="button" id="dropdownMenuButton" aria-haspopup="true"
@@ -43,7 +43,7 @@
           </div>
         </a>
       </div>
-      <a (mouseout)="changeActiveElement()" (mouseover)="changeClass([contact])" #home id="home"
+      <a (mouseout)="changeActiveElement()" (mouseover)="changeClass([contact])" #home id="cart"
         class="navbar-brand nav-link" href="/cart"> <i class="bi bi-cart"></i></a>
     </div>
   </nav>

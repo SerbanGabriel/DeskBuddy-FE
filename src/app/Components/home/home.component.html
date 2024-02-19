@@ -25,7 +25,7 @@
     <div class="mt-4 wrappedContainer">
         <div *ngFor="let item of items">
             <div class="card">
-                <button class="editBTn" type="button" mat-raised-button (click)="edit(item)">
+                <button *ngIf="store?.getUserSettings()?.isAdmin" class="editBTn" type="button" mat-raised-button (click)="edit(item)">
                     <span> Edit </span>
                   </button>
                 <img role="presentation" loading="lazy" class="card-img-top p-5 itemImage" [src]="item.image"

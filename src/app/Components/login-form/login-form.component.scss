@@ -20,3 +20,14 @@
   background-color: #fe9800f0;
 }
 
+img:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  background: #ebebeb url('http://via.placeholder.com/300?text=PlaceHolder') no-repeat center;
+  color: transparent;
+}
+
