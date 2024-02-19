@@ -45,7 +45,6 @@ export class UserDataComponent implements OnInit {
   savChanges(){
     this.http.put(Appsettings.API_ENDPOINT + "/saveUserData/" + this.store.getUserSettings().id, this.form.value).subscribe({
       next:(data:any) => {
-        console.log(data)
         let objectURL = 'data:image/png;base64,' + data.image;
         data.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
         data.image = data.image.changingThisBreaksApplicationSecurity

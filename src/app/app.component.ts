@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   form = this.fb.group({
     searchText: ['']
   })
-  foundItems:any = [];
+  foundItems: any = [];
 
   constructor(private sanitizer: DomSanitizer, private router: Router, private http: HttpClient, public notificationService: NotificationService, public store: LocalService, @Inject(DOCUMENT) private document: Document,
     private fb: FormBuilder) {
@@ -33,16 +33,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.changeActiveElement()
-    if(this.store?.getUserSettings()?.id !== 1){
-      return
-    }else{
+    if (this.store?.getUserSettings() === null) {
       let data = {
-        id:1
+        id: 1
       }
       this.store.setSettings(data);
     }
-   
+    this.changeActiveElement()
   }
 
   changeActiveElement() {
@@ -79,10 +76,10 @@ export class AppComponent implements OnInit {
         this.foundItems = res;
       })
     }
-    if(!this.form.get('searchText')?.value){
-      this.foundItems= []
+    if (!this.form.get('searchText')?.value) {
+      this.foundItems = []
     }
-   
+
   }
 
   showDropdown(accountForm: any, accountImg: any) {
