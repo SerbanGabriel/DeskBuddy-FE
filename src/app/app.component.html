@@ -26,9 +26,10 @@
       <a (mouseout)="changeActiveElement()" (mouseover)="changeClass([contact])" #home id="home"
         class="navbar-brand nav-link" href="">Home</a>
       <a (mouseout)="changeActiveElement()" (mouseover)="changeClass(home)" #contact id="contact"
-        class="navbar-brand nav-link" href="contact">Contact</a>
-      <a *ngIf="store.getUserSettings()?.isAdmin" (mouseout)="changeActiveElement()"
-        (mouseover)="changeClass(home,contact)" #admin id="admin" class="navbar-brand nav-link" href="admin">Admin</a>
+        class="navbar-brand nav-link" goTo="" href="contact">Contact</a>
+      <a (mouseout)="changeActiveElement()" (mouseover)="changeClass(home)" #contact id="admin"
+        class="navbar-brand nav-link" goTo="" href="admin">Admin</a>
+
     </div>
     <div class="d-flex ">
       <div class="accountNav " (mouseover)="showDropdown(accountForm,accountImg)"
@@ -53,7 +54,6 @@
 <div *ngIf="this.form.get('searchText')?.value" class="container">
   <app-search [items]="foundItems"></app-search>
 </div>
-{{foundItems.length}}
 <hr>
 <div class="container">
   <div class="row">

@@ -34,8 +34,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.changeActiveElement()
-
-    console.log(this.form.get('searchText')?.value)
   }
 
   changeActiveElement() {

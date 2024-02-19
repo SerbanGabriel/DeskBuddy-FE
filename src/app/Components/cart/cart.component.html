@@ -26,6 +26,12 @@
         </div>
 
     </div>
+    <div *ngIf="!items?.length"  class="container align-items-center d-flex justify-content-center">
+        <div class="line"><mat-divider></mat-divider></div>
+        <h3 class="text ">No Items in cart</h3>
+        <div class="line"><mat-divider></mat-divider></div>
+    </div>
+
     <div class="payment container">
         <form [formGroup]="payForm">
             <div class="card rounded-3">
