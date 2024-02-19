@@ -62,7 +62,15 @@ export class CartComponent implements OnInit {
           x.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + x.image1)
         })
 
-        this.items = res.items.sort((a:any,b:any)=> a-b)
+        this.items = res.items.sort(function (a:any, b:any) {
+          if (a.id < b.id) {
+            return -1;
+          }
+          if (a.id > b.id) {
+            return 1;
+          }
+          return 0;
+        });
 
         if (this.items.length == 0) {
           this.notificationService.error("No Items in cart")

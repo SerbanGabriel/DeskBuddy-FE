@@ -63,8 +63,7 @@ export class LoginFormComponent implements OnInit {
     if (this.loginForm.valid) {
       this.http.post(AppSettings.API_ENDPOINT + "/login/" + this.loginForm.value.email, this.loginForm.value)
         .subscribe({
-          next:(data:any) => {
-            console.log(data)
+          next: (data: any) => {
             if (data.password !== this.loginForm.value.password) {
               this.notificationService.error("Username or Passwrod incorect!")
               return;
@@ -74,9 +73,10 @@ export class LoginFormComponent implements OnInit {
               data.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
               data.image = data.image.changingThisBreaksApplicationSecurity
               this.storage.setSettings(data)
+              this.router.navigate([""])
             }
           },
-          error:() => {
+          error: () => {
             this.notificationService.error("Username or Passwrod incorect!")
           }
         })
@@ -109,15 +109,22 @@ export class LoginFormComponent implements OnInit {
 
   logOut() {
     this.storage.cleanAll()
+    let data = {
+      id: 1
+    }
+    this.store.setSettings(data);
+    this.router.navigate([""])
+
   }
 
   goToMyDataPage() {
+   
     this.router.navigate(["/myData"]);
   }
 
-  goTocart(){
+  goTocart() {
     this.router.navigate(["/cart"]);
-    
+
   }
 
   deleteAccount() {

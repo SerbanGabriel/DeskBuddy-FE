@@ -34,6 +34,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.changeActiveElement()
+    if(this.store?.getUserSettings()?.id !== 1){
+      return
+    }else{
+      let data = {
+        id:1
+      }
+      this.store.setSettings(data);
+    }
+   
   }
 
   changeActiveElement() {
