@@ -39,7 +39,15 @@ export class HomeComponent implements OnInit {
       res.forEach((x: any) => {
         x.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + x.image1)
       })
-      this.items = res
+      this.items = res.sort(function (a:any, b:any) {
+        if (a.id < b.id) {
+          return -1;
+        }
+        if (a.id > b.id) {
+          return 1;
+        }
+        return 0;
+      });
     })
   }
 

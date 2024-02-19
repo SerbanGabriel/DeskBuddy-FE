@@ -13,7 +13,7 @@
                     <p class="card-text">{{item.description}}</p>
                     <div>
                         <div class="d-flex align-items-center justify-content-between">
-                            <a>{{item.price}}$</a>
+                            <a>{{item.price | number : '1.2-2'}}$</a>
                         </div>
                         <div class="d-flex gap-2 justify-content-end">
                             <button class="cart scaleDown" (click)="removeCount(item)" mat-mini-fab> <mat-icon>

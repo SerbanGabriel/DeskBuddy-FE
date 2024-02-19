@@ -45,7 +45,6 @@ export class CartComponent implements OnInit {
 
 
   pay() {
-    console.log(this.payForm.value)
   }
 
   getItems() {
@@ -57,13 +56,14 @@ export class CartComponent implements OnInit {
             this.total = x.price
           }
           else {
-            this.total = x.price * x.userItemCount
+            this.total = this.total + (x.price * x.userItemCount)
           }
           this.total = Number(this.total.toFixed(2));
           x.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + x.image1)
         })
 
-        this.items = res.items
+        this.items = res.items.sort((a:any,b:any)=> a-b)
+
         if (this.items.length == 0) {
           this.notificationService.error("No Items in cart")
           this.total = 0;
@@ -75,18 +75,22 @@ export class CartComponent implements OnInit {
 
   delete(item: any) {
     this.http.get(Appsettings.API_ENDPOINT + "/deleteItemFromUser/" + item.id + "/" + this.store.getUserSettings().id, {}).subscribe((res: any) => {
+      this.total = 0
       this.getItems();
     })
   }
 
   removeCount(item: any) {
+    
     this.http.delete(Appsettings.API_ENDPOINT + "/removeCountItem/" + item.id + "/" + this.store.getUserSettings().id).subscribe((res: any) => {
+      this.total = 0
       this.getItems();
     })
   }
 
   addCount(item: any) {
     this.http.get(Appsettings.API_ENDPOINT + "/addItemCount/" + item.id + "/" + this.store.getUserSettings().id, {}).subscribe((res: any) => {
+      this.total = 0
       this.getItems();
     })
   }
