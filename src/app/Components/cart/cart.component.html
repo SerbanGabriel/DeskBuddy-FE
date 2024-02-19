@@ -17,14 +17,14 @@
                     <div class="d-flex gap-2 justify-content-end">
                         <button class="cart scaleDown" (click)="removeCount(item)" mat-mini-fab> <mat-icon>
                                 <mat-icon>play_arrow</mat-icon> </mat-icon></button>
-                        <button class="cart" (click)="delete(item)" mat-mini-fab> {{item.count}} </button>
+                        <button class="cart" (click)="delete(item)" mat-mini-fab> {{item.userItemCount}} </button>
                         <button class="cart" (click)="addCount(item)" mat-mini-fab> <mat-icon>
                                 <mat-icon>play_arrow</mat-icon></mat-icon></button>
                     </div>
                 </div>
             </div>
         </div>
-       
+
     </div>
     <div class="payment container">
         <form [formGroup]="payForm">

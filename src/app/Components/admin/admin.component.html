@@ -13,19 +13,17 @@
       </mat-form-field>
       <mat-form-field class="example-form-field">
         <mat-label>Product Price</mat-label>
-        <input min="1" max="9999" formControlName="price" matInput type="number">
-
+        <input  formControlName="price" matInput type="number">
       </mat-form-field>
       <mat-form-field class="example-form-field">
         <mat-label>Product Count</mat-label>
-        <input min="1" max="9999" formControlName="count" matInput type="number">
+        <input  formControlName="count" matInput type="number">
 
       </mat-form-field>
-
     </form>
     <div class="d-flex align-items-center ">
       <div>
-        <button type="button" mat-raised-button (click)="save()">
+        <button [disabled]="!itemForm.valid" type="button" mat-raised-button (click)="save()">
           <span> Save </span>
         </button>
 
@@ -41,7 +39,7 @@
       <p class="card-text">{{itemForm.value.description}}</p>
       <div class="d-flex align-items-center justify-content-between">
         <a class="btn btn-primary">Add to cart <i class="bi bi-cart ms-3"></i></a>
-        <a>{{itemForm.value.price}}$</a>
+       <a>{{itemForm.value.price | number: '1.2-2'}}$</a>
       </div>
     </div>
   </div>

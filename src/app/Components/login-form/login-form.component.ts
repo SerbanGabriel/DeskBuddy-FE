@@ -64,6 +64,7 @@ export class LoginFormComponent implements OnInit {
       this.http.post(AppSettings.API_ENDPOINT + "/login/" + this.loginForm.value.email, this.loginForm.value)
         .subscribe({
           next:(data:any) => {
+            console.log(data)
             if (data.password !== this.loginForm.value.password) {
               this.notificationService.error("Username or Passwrod incorect!")
               return;
