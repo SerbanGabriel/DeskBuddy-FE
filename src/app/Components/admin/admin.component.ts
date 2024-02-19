@@ -21,7 +21,7 @@ export class AdminComponent  {
     title: ['', [Validators.required, Validators.max(20)]],
     description: ['', [Validators.required]],
     price: ['', [Validators.required]],
-    count: '',
+    count: ['', [Validators.required]],
     cardId:''
   })
 
