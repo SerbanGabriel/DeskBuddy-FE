@@ -34,22 +34,20 @@ export class EditComponent {
   }
   ngOnInit(): void {
     let data  = this.store.getEditItem()
-
-    this.fileService.image = data.image.changingThisBreaksApplicationSecurity
+    this.fileService.image = data?.image?.changingThisBreaksApplicationSecurity
     this.itemForm.patchValue({
-      title: data.title,
-      description: data.description,
-      price: data.price,
-      cardId:data.id,
-      count:data.count
+      title: data?.title,
+      description: data?.description,
+      price: data?.price,
+      cardId:data?.id,
+      count:data?.count
     })
   }
 
   save() {
     this.fileService.save(this.itemForm.value).subscribe(data=> {
       this.notification.success("Item successfuly edited!")
-
-    this.router.navigate([""]);
+      this.router.navigate([""]);
     })
   }
 }

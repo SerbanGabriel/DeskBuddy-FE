@@ -72,7 +72,6 @@ export class AppComponent implements OnInit {
     }
     if(!this.form.get('searchText')?.value){
       this.foundItems= []
-
     }
    
   }

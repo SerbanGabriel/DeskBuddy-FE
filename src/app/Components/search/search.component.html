@@ -1,6 +1,9 @@
-<div class="mt-4 wrappedContainer">
+<div  *ngIf="!onEditFromSearch" class="mt-4 wrappedContainer">
     <div *ngFor="let item of items">
         <div class="card">
+             <button *ngIf="store?.getUserSettings()?.isAdmin" class="editBTn" type="button" mat-raised-button (click)="edit(item)">
+            <span> Edit </span>
+          </button>
             <img role="presentation" loading="lazy" class="card-img-top p-5 itemImage" [src]="item.image"
                 alt="Card image cap">
             <div class="card-body">
@@ -13,7 +16,7 @@
                         <a>{{item.price}}$</a>
                     </div>
 
-                    <button *ngIf="store.getUserSettings()?.isAdmin" class="imgBtn mt-2" type="button"
+                    <button (click)="delete(item)" *ngIf="store.getUserSettings()?.isAdmin" class="imgBtn mt-2" type="button"
                         mat-raised-button>
                         <span> Delete </span>
                     </button>
@@ -23,8 +26,11 @@
     </div>
 </div>
 
-<div *ngIf="!items?.length" class="container">
+<div *ngIf="!items?.length" class="container align-items-center d-flex justify-content-center">
     <div class="line"><mat-divider></mat-divider></div>
-    <div class="text mat-typography">No results</div>
+    <h3 class="text ">No Items Found</h3>
     <div class="line"><mat-divider></mat-divider></div>
+</div>
+<div *ngIf="onEditFromSearch">
+    <router-outlet></router-outlet>
 </div>

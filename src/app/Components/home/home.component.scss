@@ -60,6 +60,18 @@
 }
 .editBTn{
   position: absolute;
+  z-index: 2000;
   left: -1em;
   top: -1em;
+}
+
+img:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  background: #ebebeb url('http://via.placeholder.com/300?text=PlaceHolder') no-repeat center;
+  color: transparent;
 }
